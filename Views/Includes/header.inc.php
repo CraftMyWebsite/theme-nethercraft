@@ -93,7 +93,7 @@ $menus = MenusModel::getInstance();
                 </a>
             </div>
         </div>
-        <div class="hidden lg:flex justify-start items-center col-span-2">
+        <div onclick="openURL('<?= ThemeModel::getInstance()->fetchConfigValue('header_discord_invite_link') ?>')" class="hidden lg:flex justify-start items-center col-span-2">
             <div class="flex justify-start items-center space-x-4 hyper-card">
                 <i style="color: var(--main-color)" class="fa-brands fa-discord cursor-pointer fa-circle-play text-5xl"></i>
                 <div class="cursor-pointer text-hover">
@@ -109,7 +109,7 @@ $menus = MenusModel::getInstance();
             <div style="background: var(--card-bg-color)" class="py-4 px-6 col-span-3 rounded-lg">
                 <div class="flex lg:justify-between items-center">
                     <div class="flex items-center space-x-2 lg:space-x-6">
-                        <img class="hidden lg:inline mr-2" loading="lazy" alt="player head" width="80px" src="https://apiv2.craftmywebsite.fr/skins/3d/user=<?= UsersModel::getCurrentUser()->getPseudo() ?>&headOnly=true">
+                        <img class="hidden lg:inline mr-2" loading="lazy" alt="player head" width="80px" src="https://apiv2.craftmywebsite.fr/skins/3d/user=<?= UsersModel::getCurrentUser()?->getPseudo() ?>&headOnly=true">
                         <div class="hidden lg:block">
                             <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('header_welcome_title') ?></h4>
                             <p><?= ThemeModel::getInstance()->fetchConfigValue('header_welcome_text') ?></p>
@@ -128,7 +128,7 @@ $menus = MenusModel::getInstance();
                         <button id="dropdownDelayButton" data-dropdown-offset-distance=0 data-dropdown-toggle="dropdownPlayer" data-dropdown-delay="10" data-dropdown-trigger="hover" class="head-button rounded-lg py-2 px-4">
                             <?= UsersModel::getCurrentUser()->getPseudo() ?> <i class="fa-solid fa-chevron-down"></i>
                         </button>
-                        <div id="dropdownPlayer" style="background-color: var(--bg-pixcraft-player); color: var(--nav-color-pixcraft-player); z-index: 500;" class="hidden shadow w-full md:w-52 rounded shadow">
+                        <div id="dropdownPlayer" style="background-color: var(--main-color); z-index: 500;" class="hidden shadow w-full md:w-52 rounded shadow">
                             <div aria-labelledby="dropdownDelayButton" class="flex flex-col">
                                 <?php if (UsersController::isAdminLogged()) : ?>
                                     <a target="_blank" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>cmw-admin" id="dropdownPlayer" data-dropdown-offset-distance=0 data-dropdown-toggle="dropdownPlayer" class="block cursor-pointer nav-a p-2"><i class="fa-solid fa-screwdriver-wrench"></i> Administration</a>
@@ -145,7 +145,7 @@ $menus = MenusModel::getInstance();
                 </div>
             </div>
             <div class="hidden lg:block text-center">
-                <a href="" class="head-button rounded-lg p-7 text-2xl space-x-6"><i><?= ThemeModel::getInstance()->fetchConfigValue('header_button_text') ?></i> <i class="<?= ThemeModel::getInstance()->fetchConfigValue('header_button_icon') ?>"></i></a>
+                <a href="<?= ThemeModel::getInstance()->fetchConfigValue('header_button_link') ?>" class="head-button rounded-lg p-7 text-2xl space-x-6"><i><?= ThemeModel::getInstance()->fetchConfigValue('header_button_text') ?></i> <i class="<?= ThemeModel::getInstance()->fetchConfigValue('header_button_icon') ?>"></i></a>
             </div>
         </div>
     </div>
@@ -165,6 +165,35 @@ $menus = MenusModel::getInstance();
 <script src="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.js' ?>"></script>
 
 <script>
+    function openURL(url) {
+        open(url)
+    }
+
+    function copyURL(url) {
+        navigator.clipboard.writeText(url)
+        iziToast.show(
+            {
+                titleSize: '14',
+                messageSize: '12',
+                icon: 'fa-solid fa-check',
+                title: "<?= Website::getWebsiteName() ?>",
+                message: "Adresse du serveur copié !",
+                color: "#20b23a",
+                iconColor: '#ffffff',
+                titleColor: '#ffffff',
+                messageColor: '#ffffff',
+                balloon: false,
+                close: true,
+                pauseOnHover: true,
+                position: 'topCenter',
+                timeout: 4000,
+                animateInside: false,
+                progressBar: true,
+                transitionIn: 'fadeInDown',
+                transitionOut: 'fadeOut',
+            });
+    }
+
     document.addEventListener('DOMContentLoaded', function() {
         const playText = document.querySelector('.hyper-play-card .text-sm'); // Assurez-vous que c'est le bon sélecteur pour votre texte
         const originalText = playText.textContent;
@@ -177,31 +206,6 @@ $menus = MenusModel::getInstance();
         container.addEventListener('mouseout', function() {
             playText.textContent = originalText;
         });
-
-        function copyURL(url) {
-            navigator.clipboard.writeText(url)
-            iziToast.show(
-                {
-                    titleSize: '14',
-                    messageSize: '12',
-                    icon: 'fa-solid fa-check',
-                    title: "<?= Website::getWebsiteName() ?>",
-                    message: "Adresse du serveur copié !",
-                    color: "#20b23a",
-                    iconColor: '#ffffff',
-                    titleColor: '#ffffff',
-                    messageColor: '#ffffff',
-                    balloon: false,
-                    close: true,
-                    pauseOnHover: true,
-                    position: 'topCenter',
-                    timeout: 4000,
-                    animateInside: false,
-                    progressBar: true,
-                    transitionIn: 'fadeInDown',
-                    transitionOut: 'fadeOut',
-                });
-        }
     });
 
     document.addEventListener('DOMContentLoaded', function() {
@@ -216,27 +220,5 @@ $menus = MenusModel::getInstance();
         container.addEventListener('mouseout', function() {
             playText.textContent = originalText;
         });
-
-        let url = <?= ThemeModel::getInstance()->fetchConfigValue('header_discord_text') ?>
-        container.addEventListener('click', function() {
-            open(url)
-        });
     });
 </script>
-
-
-
-<section style="background-color: var(--bg-pixcraft-head); color: var(--head-color-pixcraft)" class="py-8 px-8 md:px-36 2xl:px-96">
-    <div class="flex justify-between items-center">
-        <h3 class="font-<?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') ?>">
-            <a href="">
-                </a>
-        </h3>
-        <?php if (ThemeModel::getInstance()->fetchConfigValue('header_alert')): ?>
-            <div class="px-16 hidden md:inline">
-                <p class="flash-effect"><?= ThemeModel::getInstance()->fetchConfigValue('header_alert_text')?></p>
-            </div>
-        <?php endif; ?>
-
-    </div>
-</section>

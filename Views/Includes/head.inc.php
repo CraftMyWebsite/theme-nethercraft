@@ -50,8 +50,6 @@ $siteName = Website::getWebsiteName();
 
 </head>
 
-<script>let intervalCar = <?= ThemeModel::getInstance()->fetchConfigValue('slider_interval')?></script>
-
 <style>
     @font-face {  font-family: angkor;  src:url("<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Themes/Nethercraft/Assets/Webfonts/Angkor-Regular.ttf");  }
     @font-face {  font-family: ibmplexsans;  src:url("<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>Public/Themes/Nethercraft/Assets/Webfonts/IBMPlexSans-Regular.ttf");  }
@@ -80,14 +78,14 @@ $siteName = Website::getWebsiteName();
     :root {
         --what-to-do-text-color: <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_color') ?>;
         --what-to-do-blur: <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_blur') ?>px;
-        --what-to-do-img-1: url(<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_img_1') ?>);
-        --what-to-do-img-2: url(<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_img_2') ?>);
-        --what-to-do-img-3: url(<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_img_3') ?>);
-        --what-to-do-img-4: url(<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_img_4') ?>);
-        --what-to-do-img-5: url(<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_img_5') ?>);
-        --what-to-do-img-6: url(<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_img_6') ?>);
-        --what-to-do-img-7: url(<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_img_7') ?>);
-        --what-to-do-img-8: url(<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_img_8') ?>);
+        --what-to-do-img-1: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_1') ?>");
+        --what-to-do-img-2: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_2') ?>");
+        --what-to-do-img-3: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_3') ?>");
+        --what-to-do-img-4: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_4') ?>");
+        --what-to-do-img-5: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_5') ?>");
+        --what-to-do-img-6: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_6') ?>");
+        --what-to-do-img-7: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_7') ?>");
+        --what-to-do-img-8: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_8') ?>");
         --main-color: <?= ThemeModel::getInstance()->fetchConfigValue('main_color') ?>;
         --link-color: <?= ThemeModel::getInstance()->fetchConfigValue('link_color') ?>;
         --hover-link-color: <?= ThemeModel::getInstance()->fetchConfigValue('hover_link_color') ?>;
@@ -103,7 +101,7 @@ $siteName = Website::getWebsiteName();
         --particles-tall : <?= ThemeModel::getInstance()->fetchConfigValue('particles_tall') ?>px;
         --logo-float-duration : <?= ThemeModel::getInstance()->fetchConfigValue('logo_float_duration') ?>s;
         --nav-text-color : <?= ThemeModel::getInstance()->fetchConfigValue('nav_text_color') ?>;
-        --nav-active-color : <?= ThemeModel::getInstance()->fetchConfigValue('nav_active_color') ?>
+        --nav-active-color : <?= ThemeModel::getInstance()->fetchConfigValue('nav_active_color') ?>;
         --flotant-translate : <?= ThemeModel::getInstance()->fetchConfigValue('float_translate') ?>px;
         --alert-text-color: <?= ThemeModel::getInstance()->fetchConfigValue('alert_text_color') ?>;
         --new-img-rotate : <?= ThemeModel::getInstance()->fetchConfigValue('new_img_rotate') ?>deg;
@@ -299,9 +297,11 @@ $siteName = Website::getWebsiteName();
         }
     }
 
+    <?php if (ThemeModel::getInstance()->fetchConfigValue('allow_floating')): ?>
     .floating {
         animation: floatAnimation var(--logo-float-duration) ease-in-out infinite;
     }
+    <?php endif; ?>
 
     .rotate-news-img {
         transition: transform var(--new-img-time) ease-in-out; /* Transition douce pour l'effet */

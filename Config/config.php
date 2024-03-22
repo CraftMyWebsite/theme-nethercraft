@@ -1,4 +1,10 @@
-<?php use CMW\Controller\Core\PackageController; use CMW\Controller\Core\ThemeController; use CMW\Utils\Utils;use CMW\Manager\Lang\LangManager;use CMW\Model\Core\ThemeModel;use CMW\Utils\SecurityService;use CMW\Model\Votes\VotesConfigModel;use CMW\Model\Core\CoreModel;?>
+<?php use CMW\Controller\Core\PackageController; use CMW\Controller\Core\ThemeController; use CMW\Utils\Utils;use CMW\Manager\Lang\LangManager;use CMW\Model\Core\ThemeModel;use CMW\Utils\SecurityService;use CMW\Model\Votes\VotesConfigModel;use CMW\Model\Core\CoreModel;
+
+if (PackageController::isInstalled("News")) {
+    /* @var \CMW\Entity\News\NewsEntity $news */
+    $newsList = \CMW\Model\News\NewsModel::getInstance()->getNews();
+}
+?>
 <!-------------->
 <!--Navigation-->
 <!-------------->
@@ -73,28 +79,6 @@
                 <div class="row">
                     <div class="col-12 col-lg-6">
                         <div class="card-in-card p-4">
-                            <h4>Accès</h4>
-                            <div class="row">
-                                <div class="col-12 col-lg-6">
-                                    <div class="form-check form-switch mt-4">
-                                        <input class="form-check-input" type="checkbox" value="1" id="header_allow_login_button" name="header_allow_login_button" <?= ThemeModel::getInstance()->fetchConfigValue('header_allow_login_button') ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="header_allow_login_button"><h6>Connexion <i data-bs-toggle="tooltip" title="Désactive le bouton de connexion mais vous avez toujours accès à la page" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6 mb-2">
-                                    <div class="form-check form-switch mt-4">
-                                        <input class="form-check-input" type="checkbox" value="1" name="header_allow_register_button" id="header_allow_register_button" <?= ThemeModel::getInstance()->fetchConfigValue('header_allow_register_button') ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="header_allow_register_button"><h6>Inscription <i data-bs-toggle="tooltip" title="Vous pouvez désactiver les inscriptions et afficher un message" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
-                                    </div>
-                                </div>
-                                <h6>Message lorsque l'inscription est désactivée :</h6>
-                                <input class="form-control text-center" type="text" id="global_no_register_message" name="global_no_register_message"  value="<?= ThemeModel::getInstance()->fetchConfigValue('global_no_register_message') ?>">
-                            </div>
-                        </div>
-                    </div>
-
-                    <div class="col-12 col-lg-6">
-                        <div class="card-in-card p-4">
                             <h4>Apparences</h4>
                             <div class="row">
                                 <div class="col-12 col-lg-6 mt-2">
@@ -105,13 +89,61 @@
                                 </div>
                                 <div class="col-12 col-lg-6 mt-2">
                                     <div class="d-flex items-center">
-                                        <input type="color" id="title_color" name="title_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('title_color') ?>">
-                                        <label style="margin-left: 0.5rem" for="title_color">Couleur des titres.</label>
+                                        <input type="color" id="bg_color" name="bg_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('bg_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="bg_color">Couleur du fond</label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6 mt-4">
+                                <div class="col-12 col-lg-6 mt-2">
+                                    <div class="d-flex items-center">
+                                        <input type="color" id="link_color" name="link_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('link_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="link_color">Couleur des liens</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 mt-2">
+                                    <div class="d-flex items-center">
+                                        <input type="color" id="hover_link_color" name="hover_link_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('hover_link_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="hover_link_color">Couleur lors du survol des liens</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 mt-2">
+                                    <div class="d-flex items-center">
+                                        <input type="color" id="card_bg_color" name="card_bg_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('card_bg_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="card_bg_color">Couleur des cartes</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 mt-2">
+                                    <div class="d-flex items-center">
+                                        <input type="color" id="card_in_card_bg_color" name="card_in_card_bg_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('card_in_card_bg_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="card_in_card_bg_color">Couleur des cartes dans les cartes</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 mt-2">
+                                    <div class="d-flex items-center">
+                                        <input type="color" id="footer_bg_color" name="footer_bg_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('footer_bg_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="footer_bg_color">Couleur du footer</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 mt-2">
+                                    <div class="d-flex items-center">
+                                        <input type="color" id="input_bg_color" name="input_bg_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('input_bg_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="input_bg_color">Couleur du fond des champs texte</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 mt-2">
+                                    <div class="d-flex items-center">
+                                        <input type="color" id="input_text_color" name="input_text_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('input_text_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="input_text_color">Couleur du texte des champs texte</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 col-lg-6 mt-2">
+                                    <div class="d-flex items-center">
+                                        <input type="color" id="text_color" name="text_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('text_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="text_color">Couleur des textes</label>
+                                    </div>
+                                </div>
+                                <div class="col-12 mt-4">
                                     <div>
-                                        <label for="hero_button_link">Police d'écriture principal :</label>
+                                        <label for="hero_button_link">Police d'écriture :</label>
                                         <select class="form-select" name="website_font" required>
                                             <option value="angkor" <?= ThemeModel::getInstance()->fetchConfigValue('website_font') === "angkor" ? 'selected' : '' ?>>
                                                 Angkor
@@ -182,116 +214,43 @@
                                         </select>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-6 mt-4">
-                                    <div>
-                                        <label for="hero_button_link">Police d'écriture des titres :</label>
-                                        <select class="form-select" name="website_secondary_font" required>
-                                            <option value="angkor" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "angkor" ? 'selected' : '' ?>>
-                                                Angkor
-                                            </option>
-                                            <option value="ibmplexsans" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "ibmplexsans" ? 'selected' : '' ?>>
-                                                ibmplexsans
-                                            </option>
-                                            <option value="kanit" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "kanit" ? 'selected' : '' ?>>
-                                                kanit
-                                            </option>
-                                            <option value="lora" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "lora" ? 'selected' : '' ?>>
-                                                lora
-                                            </option>
-                                            <option value="madimione" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "madimione" ? 'selected' : '' ?>>
-                                                madimione
-                                            </option>
-                                            <option value="ojuju" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "ojuju" ? 'selected' : '' ?>>
-                                                ojuju
-                                            </option>
-                                            <option value="opensans" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "opensans" ? 'selected' : '' ?>>
-                                                opensans
-                                            </option>
-                                            <option value="playfairdisplay" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "playfairdisplay" ? 'selected' : '' ?>>
-                                                playfairdisplay
-                                            </option>
-                                            <option value="robotocondensed" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "robotocondensed" ? 'selected' : '' ?>>
-                                                robotocondensed
-                                            </option>
-                                            <option value="robotomono" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "robotomono" ? 'selected' : '' ?>>
-                                                robotomono
-                                            </option>
-                                            <option value="robotoslab" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "robotoslab" ? 'selected' : '' ?>>
-                                                robotoslab
-                                            </option>
-                                            <option value="rubik" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "rubik" ? 'selected' : '' ?>>
-                                                rubik
-                                            </option>
-                                            <option value="ubuntu" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "ubuntu" ? 'selected' : '' ?>>
-                                                ubuntu
-                                            </option>
-                                            <option value="roboto" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "roboto" ? 'selected' : '' ?>>
-                                                roboto
-                                            </option>
-                                            <option value="unbounded" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "unbounded" ? 'selected' : '' ?>>
-                                                unbounded
-                                            </option>
-                                            <option value="montserrat" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "montserrat" ? 'selected' : '' ?>>
-                                                montserrat
-                                            </option>
-                                            <option value="paytone" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "paytone" ? 'selected' : '' ?>>
-                                                paytone (par défaut)
-                                            </option>
-                                            <option value="sora" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "sora" ? 'selected' : '' ?>>
-                                                sora
-                                            </option>
-                                            <option value="outfit" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "outfit" ? 'selected' : '' ?>>
-                                                outfit
-                                            </option>
-                                            <option value="alata" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "alata" ? 'selected' : '' ?>>
-                                                alata
-                                            </option>
-                                            <option value="titan" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "titan" ? 'selected' : '' ?>>
-                                                titan
-                                            </option>
-                                            <option value="pressstart" <?= ThemeModel::getInstance()->fetchConfigValue('website_secondary_font') === "pressstart" ? 'selected' : '' ?>>
-                                                pressstart
-                                            </option>
-                                        </select>
+                                <div class="col-12 mt-4">
+                                    <div class="form-check form-switch mt-4">
+                                        <input class="form-check-input" type="checkbox" value="1" id="allow_particles" name="allow_particles" <?= ThemeModel::getInstance()->fetchConfigValue('allow_particles') ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="allow_particles"><h6>Particules <i data-bs-toggle="tooltip" title="Désactive les particules" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                                    </div>
+                                    <div class="row">
+                                        <div class="col-12 col-lg-6 mb-2">
+                                            <label for="particles_tall">Taille des particules</label>
+                                            <input class="form-control" type="text" id="particles_tall" name="particles_tall"  value="<?= ThemeModel::getInstance()->fetchConfigValue('particles_tall') ?>">
+                                        </div>
+                                        <div class="col-12 col-lg-6 mb-2">
+                                            <label for="particles_number">Nombres de particules</label>
+                                            <input class="form-control" type="text" id="particles_number" name="particles_number"  value="<?= ThemeModel::getInstance()->fetchConfigValue('particles_number') ?>">
+                                        </div>
                                     </div>
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div class="col-12 mt-4">
+                    <div class="col-12 col-lg-6">
                         <div class="card-in-card p-4">
-                            <h4>Images</h4>
+                            <h4>Accès</h4>
                             <div class="row">
-                                <div class="col-12 col-lg-4 mt-2">
-                                    <div>
-                                        <h6>Page d'erreur / 404 :</h6>
-                                        <input class="mt-2 form-control form-control-sm" type="file" id="404_img" name="404_img" accept=".png, .jpg, .jpeg, .webp, .gif">
-                                        <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                                        <div class="text-center ">
-                                            <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("404_img") ?>" alt="Image introuvable !">
-                                        </div>
+                                <div class="col-12 col-lg-6">
+                                    <div class="form-check form-switch mt-4">
+                                        <input class="form-check-input" type="checkbox" value="1" id="header_allow_login_button" name="header_allow_login_button" <?= ThemeModel::getInstance()->fetchConfigValue('header_allow_login_button') ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="header_allow_login_button"><h6>Connexion <i data-bs-toggle="tooltip" title="Désactive le bouton de connexion mais vous avez toujours accès à la page" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-4 mt-2">
-                                    <div>
-                                        <h6>Maintenance :</h6>
-                                        <input class="mt-2 form-control form-control-sm" type="file" id="maintenance_img" name="maintenance_img" accept=".png, .jpg, .jpeg, .webp, .gif">
-                                        <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                                        <div class="text-center ">
-                                            <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("maintenance_img") ?>" alt="Image introuvable !">
-                                        </div>
+                                <div class="col-12 col-lg-6 mb-2">
+                                    <div class="form-check form-switch mt-4">
+                                        <input class="form-check-input" type="checkbox" value="1" name="header_allow_register_button" id="header_allow_register_button" <?= ThemeModel::getInstance()->fetchConfigValue('header_allow_register_button') ? 'checked' : '' ?>>
+                                        <label class="form-check-label" for="header_allow_register_button"><h6>Inscription <i data-bs-toggle="tooltip" title="Vous pouvez désactiver les inscriptions et afficher un message" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
                                     </div>
                                 </div>
-                                <div class="col-12 col-lg-4 mt-2">
-                                    <div>
-                                        <h6>Vous nous quitter (page de profile) :</h6>
-                                        <input class="mt-2 form-control form-control-sm" type="file" id="profile_broken" name="profile_broken" accept=".png, .jpg, .jpeg, .webp, .gif">
-                                        <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                                        <div class="text-center ">
-                                            <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("profile_broken") ?>" alt="Image introuvable !">
-                                        </div>
-                                    </div>
-                                </div>
+                                <h6>Message lorsque l'inscription est désactivée :</h6>
+                                <input class="form-control text-center" type="text" id="global_no_register_message" name="global_no_register_message"  value="<?= ThemeModel::getInstance()->fetchConfigValue('global_no_register_message') ?>">
                             </div>
                         </div>
                     </div>
@@ -327,8 +286,46 @@
                             </div>
                             <input class="mt-2 form-control form-control-sm" type="file" id="header_img_logo" name="header_img_logo" accept=".png, .jpg, .jpeg, .webp, .gif">
                             <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
+                            <div class="col-12 mt-4">
+                                <div class="form-check form-switch mt-4">
+                                    <input class="form-check-input" type="checkbox" value="1" id="allow_floating" name="allow_floating" <?= ThemeModel::getInstance()->fetchConfigValue('allow_floating') ? 'checked' : '' ?>>
+                                    <label class="form-check-label" for="allow_floating"><h6>Logo flottant <i data-bs-toggle="tooltip" title="Désactive l'effet du logo'" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                                </div>
+                                <div class="row">
+                                    <div class="col-12 col-lg-6 mb-2">
+                                        <label for="logo_float_duration">Durée</label>
+                                        <input class="form-control" type="text" id="logo_float_duration" name="logo_float_duration"  value="<?= ThemeModel::getInstance()->fetchConfigValue('logo_float_duration') ?>">
+                                    </div>
+                                    <div class="col-12 col-lg-6 mb-2">
+                                        <label for="float_translate">Transition</label>
+                                        <input class="form-control" type="text" id="float_translate" name="float_translate"  value="<?= ThemeModel::getInstance()->fetchConfigValue('float_translate') ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            <div class="col-12 mt-4">
+                                <h6>Rejoindre :</h6>
+                                        <label for="join_ip">Adresse IP</label>
+                                        <input class="form-control" type="text" id="join_ip" name="join_ip"  value="<?= ThemeModel::getInstance()->fetchConfigValue('join_ip') ?>">
+                                </div>
+                            <div class="col-12 mt-4">
+                                <h6>Discord :</h6>
+                                <div class="row">
+                                    <div class="col-12 col-lg-6 mb-2">
+                                        <label for="header_discord_members">Nombres de membres :</label>
+                                        <input class="form-control" type="text" id="header_discord_members" name="header_discord_members"  value="<?= ThemeModel::getInstance()->fetchConfigValue('header_discord_members') ?>">
+                                    </div>
+                                    <div class="col-12 col-lg-6 mb-2">
+                                        <label for="header_discord_text">Texte :</label>
+                                        <input class="form-control" type="text" id="header_discord_text" name="header_discord_text"  value="<?= ThemeModel::getInstance()->fetchConfigValue('header_discord_text') ?>">
+                                    </div>
+                                    <div class="col-12 mb-2">
+                                        <label for="header_discord_invite_link">Lien à ouvrir :</label>
+                                        <input class="form-control" type="text" id="header_discord_invite_link" name="header_discord_invite_link"  value="<?= ThemeModel::getInstance()->fetchConfigValue('header_discord_invite_link') ?>">
+                                    </div>
+                                </div>
+                            </div>
+                            </div>
                         </div>
-                    </div>
                     <div class="col-12 col-lg-6">
                         <div class="card-in-card p-4">
                             <h4>Alerteur</h4>
@@ -341,21 +338,21 @@
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div class="d-flex items-center">
-                                        <input type="color" id="buttonColor" name="header_alert_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('header_alert_color') ?>">
-                                        <label style="margin-left: 0.5rem" for="buttonColor">Couleur de la bordure.</label>
+                                        <input type="color" id="alert_text_color" name="alert_text_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('alert_text_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="alert_text_color">Couleur du texte.</label>
                                     </div>
                                 </div>
                             </div>
                             <div class="row mt-1">
                                 <div class="col-12 col-lg-6">
                                     <div>
-                                        <label for="header_alert_duration">Durée d'activation du flash (s):</label>
-                                        <input class="form-control text-center" type="text" id="header_alert_duration" name="header_alert_duration" value="<?= ThemeModel::getInstance()->fetchConfigValue('header_alert_duration') ?>">
+                                        <label for="header_alert_title">Titre :</label>
+                                        <input class="form-control text-center" type="text" id="header_alert_title" name="header_alert_title" value="<?= ThemeModel::getInstance()->fetchConfigValue('header_alert_title') ?>">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
                                     <div>
-                                        <label for="header_alert_text">Texte de l'alerte :</label>
+                                        <label for="header_alert_text">Texte :</label>
                                         <input class="form-control text-center" type="text" id="header_alert_text" name="header_alert_text" value="<?= ThemeModel::getInstance()->fetchConfigValue('header_alert_text') ?>">
                                     </div>
                                 </div>
@@ -370,52 +367,46 @@
                                         <label style="margin-left: 0.5rem" for="nav_text_color">Texte dans la navigation.</label>
                                     </div>
                                     <div class="d-flex items-center">
-                                        <input type="color" id="nav_hover_text_color" name="nav_hover_text_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('nav_hover_text_color') ?>">
-                                        <label style="margin-left: 0.5rem" for="nav_hover_text_color">texte lors du survol dans la navigation.</label>
-                                    </div>
-                                    <div class="d-flex items-center">
-                                        <input type="color" id="nav_player_name_color" name="nav_player_name_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('nav_player_name_color') ?>">
-                                        <label style="margin-left: 0.5rem" for="nav_player_name_color">Texte dans le bouton utilisateur.</label>
-                                    </div>
-                                    <div class="d-flex items-center">
-                                        <input type="color" id="nav_player_name_background" name="nav_player_name_background" value="<?= ThemeModel::getInstance()->fetchConfigValue('nav_player_name_background') ?>">
-                                        <label style="margin-left: 0.5rem" for="nav_player_name_background">Fond dans le bouton utilisateur.</label>
-                                    </div>
-                                </div>
-                                <div class="col-12 col-lg-6">
-                                    <div class="d-flex items-center">
-                                        <input type="color" id="nav_background" name="nav_background" value="<?= ThemeModel::getInstance()->fetchConfigValue('nav_background') ?>">
-                                        <label style="margin-left: 0.5rem" for="nav_background">Fond de la navigation.</label>
-                                    </div>
-                                    <div class="d-flex items-center">
-                                        <input type="color" id="head_text_color" name="head_text_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('head_text_color') ?>">
-                                        <label style="margin-left: 0.5rem" for="head_text_color">Texte dans l'en tête.</label>
-                                    </div>
-                                    <div class="d-flex items-center">
-                                        <input type="color" id="head_background_color" name="head_background_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('head_background_color') ?>">
-                                        <label style="margin-left: 0.5rem" for="head_background_color">Fond de l'en tête.</label>
+                                        <input type="color" id="nav_active_color" name="nav_active_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('nav_active_color') ?>">
+                                        <label style="margin-left: 0.5rem" for="nav_active_color">texte lors du survol dans la navigation.</label>
                                     </div>
                                 </div>
                             </div>
                         </div>
                         <div class="card-in-card p-4 mt-4">
-                            <h4>Barre haute</h4>
-                            <div class="row">
+                            <h4>Bouton</h4>
+                            <div class="row mt-1">
                                 <div class="col-12 col-lg-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" value="1" id="header_show_online" name="header_show_online" <?= ThemeModel::getInstance()->fetchConfigValue('header_show_online') ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="header_show_online"><h6>Afficher le nombre en ligne : <i data-bs-toggle="tooltip" title="Vous pouvez l'afficher ou le masqué" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                                    <div>
+                                        <label for="header_button_text">Texte :</label>
+                                        <input class="form-control text-center" type="text" id="header_button_text" name="header_button_text" value="<?= ThemeModel::getInstance()->fetchConfigValue('header_button_text') ?>">
                                     </div>
                                 </div>
                                 <div class="col-12 col-lg-6">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" value="1" id="header_show_members" name="header_show_members" <?= ThemeModel::getInstance()->fetchConfigValue('header_show_members') ? 'checked' : '' ?>>
-                                        <label class="form-check-label" for="header_show_members"><h6>Afficher le nombre d'inscrits : <i data-bs-toggle="tooltip" title="Vous pouvez l'afficher ou le masqué" class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                                    <div>
+                                        <label for="header_button_icon">Icône :</label>
+                                        <input class="form-control text-center" type="text" id="header_button_icon" name="header_button_icon" value="<?= ThemeModel::getInstance()->fetchConfigValue('header_button_icon') ?>">
                                     </div>
                                 </div>
                             </div>
+                            <div>
+                                <label for="header_button_link">URL :</label>
+                                <input class="form-control text-center" type="text" id="header_button_link" name="header_button_link" value="<?= ThemeModel::getInstance()->fetchConfigValue('header_button_link') ?>">
+                            </div>
+                        </div>
+                        <div class="card-in-card p-4 mt-4">
+                            <h4>Cadre utilisateur</h4>
+                            <div>
+                                <label for="header_welcome_title">Titre :</label>
+                                <input class="form-control text-center" type="text" id="header_welcome_title" name="header_welcome_title" value="<?= ThemeModel::getInstance()->fetchConfigValue('header_welcome_title') ?>">
+                            </div>
+                            <div>
+                                <label for="header_welcome_text">Texte :</label>
+                                <input class="form-control text-center" type="text" id="header_welcome_text" name="header_welcome_text" value="<?= ThemeModel::getInstance()->fetchConfigValue('header_welcome_text') ?>">
+                            </div>
                         </div>
                     </div>
+
                 </div>
             </div>
         </div>
@@ -436,215 +427,269 @@
                         <input type="text" class="form-control" id="home_title" name="home_title" value="<?= ThemeModel::getInstance()->fetchConfigValue('home_title') ?>" required>
                 </div>
             </div>
-        <!--Slider-->
+        <!--NEWS-->
+        <?php if (PackageController::isInstalled("News")): ?>
         <div class="card-in-card mt-4">
             <div class="card-body">
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" value="1" id="home_use_slider" name="home_use_slider" <?= ThemeModel::getInstance()->fetchConfigValue('home_use_slider') ? 'checked' : '' ?>>
-                    <label class="form-check-label" for="home_use_slider"><h6>Slider : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette section." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                    <input class="form-check-input" type="checkbox" value="1" id="news_section_active" name="news_section_active" <?= ThemeModel::getInstance()->fetchConfigValue('news_section_active') ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="news_section_active"><h6>Articles mis en avant : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette section." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
                 </div>
-                <div class="row mt-2">
-                    <div class="col-12 col-lg-3">
+                <div class="row mt-1">
+                    <div class="col-12 col-lg-4">
                         <div>
-                            <label for="hero_button_link">Temps entre chaque image (ms):</label>
-                            <input class="form-control" type="text" id="hero_button_link" name="slider_interval" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_interval') ?>">
+                            <label for="new_img_rotate">Rotation de l'image :</label>
+                            <input class="form-control text-center" type="text" id="new_img_rotate" name="new_img_rotate" value="<?= ThemeModel::getInstance()->fetchConfigValue('new_img_rotate') ?>">
                         </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div>
+                            <label for="new_img_scale">Zoom :</label>
+                            <input class="form-control text-center" type="text" id="new_img_scale" name="new_img_scale" value="<?= ThemeModel::getInstance()->fetchConfigValue('new_img_scale') ?>">
+                        </div>
+                    </div>
+                    <div class="col-12 col-lg-4">
+                        <div>
+                            <label for="new_img_scale">Temps de transition :</label>
+                            <input class="form-control text-center" type="text" id="new_img_time" name="new_img_time" value="<?= ThemeModel::getInstance()->fetchConfigValue('new_img_time') ?>">
+                        </div>
+                    </div>
+                </div>
+                <div>
+                    <label for="first_news">News 1 :</label>
+                    <select id="first_news" class="form-select" name="first_news" required>
+                    <?php foreach ($newsList as $news): ?>
+                            <option value="<?= $news->getNewsId() ?>" <?= ThemeModel::getInstance()->fetchConfigValue('first_news') === strval($news->getNewsId()) ? 'selected' : '' ?>>
+                                <?= $news->getTitle() ." (". $news->getDateCreated() .")" ?>
+                            </option>
+                    <?php endforeach; ?>
+                    </select>
+                </div>
+                <div>
+                    <label for="first_news">News 2 :</label>
+                    <select id="first_news" class="form-select" name="second_news" required>
+                        <?php foreach ($newsList as $news): ?>
+                            <option value="<?= $news->getNewsId() ?>" <?= ThemeModel::getInstance()->fetchConfigValue('second_news') === strval($news->getNewsId()) ? 'selected' : '' ?>>
+                                <?= $news->getTitle() ." (". $news->getDateCreated() .")" ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+                <div>
+                    <label for="first_news">News 3 :</label>
+                    <select id="first_news" class="form-select" name="third_news" required>
+                        <?php foreach ($newsList as $news): ?>
+                            <option value="<?= $news->getNewsId() ?>" <?= ThemeModel::getInstance()->fetchConfigValue('third_news') === strval($news->getNewsId()) ? 'selected' : '' ?>>
+                                <?= $news->getTitle() ." (". $news->getDateCreated() .")" ?>
+                            </option>
+                        <?php endforeach; ?>
+                    </select>
+                </div>
+            </div>
+        </div>
+        <?php endif; ?>
+        <!--WHAT TO DO SECTION-->
+        <div class="card-in-card mt-4">
+            <div class="card-body">
+                <div class="form-check form-switch">
+                    <input class="form-check-input" type="checkbox" value="1" id="use_what_to_do" name="use_what_to_do" <?= ThemeModel::getInstance()->fetchConfigValue('use_what_to_do') ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="use_what_to_do"><h6>Que faire chez nous : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette section." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                </div>
+                <div class="row">
+                    <div class="col-12 col-lg-3">
+                        <h6>Titre de la section :</h6>
+                        <input type="text" class="form-control" name="what_to_do_title" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_title') ?>" required>
                     </div>
                     <div class="col-12 col-lg-3">
                         <div>
-                            <label for="hero_button_link">Durée de la transition (ms):</label>
-                            <input class="form-control" type="text" id="hero_button_link" name="slider_transition_duration" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_transition_duration') ?>">
+                            <label for="what_to_do_blur">Flou d'images:</label>
+                            <input class="form-control" type="text" id="what_to_do_blur" name="what_to_do_blur" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_blur') ?>">
                         </div>
                     </div>
                     <div class="col-12 col-lg-3">
-                        <div>
-                            <label for="hero_button_link">Flou:</label>
-                            <input class="form-control" type="text" id="slider_blur" name="slider_blur" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_blur') ?>">
-                        </div>
+                        <label for="hero_button_link">Nombre de colonnes :</label>
+                        <select class="form-select" name="what_to_do_grid" required>
+                            <option value="1" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_grid') === "1" ? 'selected' : '' ?>>
+                                Aucune
+                            </option>
+                            <option value="2" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_grid') === "2" ? 'selected' : '' ?>>
+                                2
+                            </option>
+                            <option value="3" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_grid') === "3" ? 'selected' : '' ?>>
+                                3
+                            </option>
+                            <option value="4" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_grid') === "4" ? 'selected' : '' ?>>
+                                4
+                            </option>
+                            <option value="5" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_grid') === "5" ? 'selected' : '' ?>>
+                                5
+                            </option>
+                            <option value="6" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_grid') === "6" ? 'selected' : '' ?>>
+                                6
+                            </option>
+                            <option value="7" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_grid') === "7" ? 'selected' : '' ?>>
+                                7
+                            </option>
+                            <option value="8" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_grid') === "8" ? 'selected' : '' ?>>
+                                8
+                            </option>
+                        </select>
                     </div>
                     <div class="col-12 col-lg-3">
                         <div class="d-flex items-center">
-                            <input type="color" id="slider_text_color" name="slider_text_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_text_color') ?>">
-                            <label style="margin-left: 0.5rem" for="slider_text_color">Couleur du texte dans le slider.</label>
+                            <input type="color" id="what_to_do_text_color" name="what_to_do_text_color" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_color') ?>">
+                            <label style="margin-left: 0.5rem" for="what_to_do_text_color">Couleur du texte.</label>
                         </div>
                     </div>
                 </div>
                 <div class="row mt-4">
-                    <div class="col-12 col-lg-6 card">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" value="1" id="use_slide_1" name="use_slide_1" <?= ThemeModel::getInstance()->fetchConfigValue('use_slide_1') ? 'checked' : '' ?>>
-                            <label class="form-check-label" for="use_slide_1">Slide 1</label>
-                        </div>
-                        <div class="text-center">
-                            <img width="100%" height="100%" src="<?= ThemeModel::getInstance()->fetchImageLink("slider_img_1") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !"/>
-                        </div>
-                        <div class="form-group">
-                            <input class="mt-2 form-control form-control-sm" type="file" id="slider_img_1" name="slider_img_1" accept="png,jpg,jpeg,webp,svg,gif">
-                            <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                        </div>
-                        <div class="form-group">
-                            <label>Titre :</label>
-                            <input class="form-control text-center" type="text" id="slider_title_1" name="slider_title_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_title_1') ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Description :</label>
-                            <input class="form-control text-center" type="text" id="slider_text_1" name="slider_text_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_text_1') ?>">
+                    <div class="col-12 col-lg-3">
+                        <div class="card me-2 p-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="1" id="what_to_do_use_1" name="what_to_do_use_1" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_use_1') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="what_to_do_use_1"><h6>Carte 1 : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette carte." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                            </div>
+                            <div class="text-center">
+                                <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("what_to_do_img_1") ?>" alt="Image introuvable !">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="what_to_do_img_1" name="what_to_do_img_1" accept=".png, .jpg, .jpeg, .webp, .gif">
+                            </div>
+                            <h6 class="mt-2">Titre :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_title_1" name="what_to_do_title_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_title_1') ?>" required>
+                            <h6 class="mt-2">Texte :</h6>
+                            <input type="text" class="form-control" id="what_to_do_text_1" name="what_to_do_text_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_1') ?>" required>
+                            <h6 class="mt-2">URL :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_link_1" name="what_to_do_link_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_link_1') ?>">
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 card">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" value="1" id="use_slide_2" name="use_slide_2" <?= ThemeModel::getInstance()->fetchConfigValue('use_slide_2') ? 'checked' : '' ?>>
-                            <label class="form-check-label" for="use_slide_2">Slide 2</label>
-                        </div>
-                        <div class="text-center">
-                            <img width="100%" height="100%" src="<?= ThemeModel::getInstance()->fetchImageLink("slider_img_2") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !"/>
-                        </div>
-                        <div class="form-group">
-                            <input class="mt-2 form-control form-control-sm" type="file" id="slider_img_2" name="slider_img_2" accept="png,jpg,jpeg,webp,svg,gif">
-                            <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                        </div>
-                        <div class="form-group">
-                            <label>Titre :</label>
-                            <input class="form-control text-center" type="text" id="slider_title_2" name="slider_title_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_title_2') ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Description :</label>
-                            <input class="form-control text-center" type="text" id="slider_text_2" name="slider_text_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_text_2') ?>">
+                    <div class="col-12 col-lg-3">
+                        <div class="card me-2 p-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="1" id="what_to_do_use_2" name="what_to_do_use_2" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_use_2') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="what_to_do_use_2"><h6>Carte 2 : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette carte." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                            </div>
+                            <div class="text-center">
+                                <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("what_to_do_img_2") ?>" alt="Image introuvable !">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="what_to_do_img_2" name="what_to_do_img_2" accept=".png, .jpg, .jpeg, .webp, .gif">
+                            </div>
+                            <h6 class="mt-2">Titre :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_title_2" name="what_to_do_title_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_title_2') ?>" required>
+                            <h6 class="mt-2">Texte :</h6>
+                            <input type="text" class="form-control" id="what_to_do_text_2" name="what_to_do_text_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_2') ?>" required>
+                            <h6 class="mt-2">URL :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_link_2" name="what_to_do_link_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_link_2') ?>">
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 card">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" value="1" id="use_slide_3" name="use_slide_3" <?= ThemeModel::getInstance()->fetchConfigValue('use_slide_3') ? 'checked' : '' ?>>
-                            <label class="form-check-label" for="use_slide_3">Slide 3</label>
-                        </div>
-                        <div class="text-center">
-                            <img width="100%" height="100%" src="<?= ThemeModel::getInstance()->fetchImageLink("slider_img_3") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !"/>
-                        </div>
-                        <div class="form-group">
-                            <input class="mt-2 form-control form-control-sm" type="file" id="slider_img_3" name="slider_img_3" accept="png,jpg,jpeg,webp,svg,gif">
-                            <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                        </div>
-                        <div class="form-group">
-                            <label>Titre :</label>
-                            <input class="form-control text-center" type="text" id="slider_title_3" name="slider_title_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_title_3') ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Description :</label>
-                            <input class="form-control text-center" type="text" id="slider_text_3" name="slider_text_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_text_3') ?>">
+                    <div class="col-12 col-lg-3">
+                        <div class="card me-2 p-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="1" id="what_to_do_use_3" name="what_to_do_use_3" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_use_3') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="what_to_do_use_3"><h6>Carte 3 : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette carte." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                            </div>
+                            <div class="text-center">
+                                <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("what_to_do_img_3") ?>" alt="Image introuvable !">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="what_to_do_img_3" name="what_to_do_img_3" accept=".png, .jpg, .jpeg, .webp, .gif">
+                            </div>
+                            <h6 class="mt-2">Titre :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_title_3" name="what_to_do_title_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_title_3') ?>" required>
+                            <h6 class="mt-2">Texte :</h6>
+                            <input type="text" class="form-control" id="what_to_do_text_3" name="what_to_do_text_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_3') ?>" required>
+                            <h6 class="mt-2">URL :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_link_3" name="what_to_do_link_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_link_3') ?>">
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 card">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" value="1" id="use_slide_4" name="use_slide_4" <?= ThemeModel::getInstance()->fetchConfigValue('use_slide_4') ? 'checked' : '' ?>>
-                            <label class="form-check-label" for="use_slide_4">Slide 4</label>
-                        </div>
-                        <div class="text-center">
-                            <img width="100%" height="100%" src="<?= ThemeModel::getInstance()->fetchImageLink("slider_img_4") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !"/>
-                        </div>
-                        <div class="form-group">
-                            <input class="mt-2 form-control form-control-sm" type="file" id="slider_img_4" name="slider_img_4" accept="png,jpg,jpeg,webp,svg,gif">
-                            <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                        </div>
-                        <div class="form-group">
-                            <label>Titre :</label>
-                            <input class="form-control text-center" type="text" id="slider_title_4" name="slider_title_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_title_4') ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Description :</label>
-                            <input class="form-control text-center" type="text" id="slider_text_4" name="slider_text_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_text_4') ?>">
+                    <div class="col-12 col-lg-3">
+                        <div class="card me-2 p-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="1" id="what_to_do_use_4" name="what_to_do_use_4" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_use_4') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="what_to_do_use_1"><h6>Carte 4 : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette carte." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                            </div>
+                            <div class="text-center">
+                                <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("what_to_do_img_4") ?>" alt="Image introuvable !">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="what_to_do_img_4" name="what_to_do_img_4" accept=".png, .jpg, .jpeg, .webp, .gif">
+                            </div>
+                            <h6 class="mt-2">Titre :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_title_4" name="what_to_do_title_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_title_4') ?>" required>
+                            <h6 class="mt-2">Texte :</h6>
+                            <input type="text" class="form-control" id="what_to_do_text_4" name="what_to_do_text_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_4') ?>" required>
+                            <h6 class="mt-2">URL :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_link_4" name="what_to_do_link_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_link_4') ?>">
                         </div>
                     </div>
-                    <div class="col-12 col-lg-6 card">
-                        <div class="form-check form-switch">
-                            <input class="form-check-input" type="checkbox" value="1" id="use_slide_5" name="use_slide_5" <?= ThemeModel::getInstance()->fetchConfigValue('use_slide_5') ? 'checked' : '' ?>>
-                            <label class="form-check-label" for="use_slide_5">Slide 5</label>
+                    <div class="col-12 col-lg-3">
+                        <div class="card me-2 p-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="1" id="what_to_do_use_5" name="what_to_do_use_5" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_use_5') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="what_to_do_use_5"><h6>Carte 5 : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette carte." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                            </div>
+                            <div class="text-center">
+                                <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("what_to_do_img_5") ?>" alt="Image introuvable !">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="what_to_do_img_5" name="what_to_do_img_5" accept=".png, .jpg, .jpeg, .webp, .gif">
+                            </div>
+                            <h6 class="mt-2">Titre :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_title_5" name="what_to_do_title_5" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_title_5') ?>" required>
+                            <h6 class="mt-2">Texte :</h6>
+                            <input type="text" class="form-control" id="what_to_do_text_5" name="what_to_do_text_5" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_5') ?>" required>
+                            <h6 class="mt-2">URL :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_link_5" name="what_to_do_link_5" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_link_5') ?>">
                         </div>
-                        <div class="text-center">
-                            <img width="100%" height="100%" src="<?= ThemeModel::getInstance()->fetchImageLink("slider_img_5") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !"/>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card me-2 p-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="1" id="what_to_do_use_6" name="what_to_do_use_6" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_use_6') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="what_to_do_use_6"><h6>Carte 6 : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette carte." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                            </div>
+                            <div class="text-center">
+                                <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("what_to_do_img_6") ?>" alt="Image introuvable !">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="what_to_do_img_6" name="what_to_do_img_6" accept=".png, .jpg, .jpeg, .webp, .gif">
+                            </div>
+                            <h6 class="mt-2">Titre :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_title_6" name="what_to_do_title_6" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_title_6') ?>" required>
+                            <h6 class="mt-2">Texte :</h6>
+                            <input type="text" class="form-control" id="what_to_do_text_6" name="what_to_do_text_6" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_6') ?>" required>
+                            <h6 class="mt-2">URL :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_link_6" name="what_to_do_link_6" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_link_6') ?>">
                         </div>
-                        <div class="form-group">
-                            <input class="mt-2 form-control form-control-sm" type="file" id="slider_img_5" name="slider_img_5" accept="png,jpg,jpeg,webp,svg,gif">
-                            <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card me-2 p-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="1" id="what_to_do_use_7" name="what_to_do_use_7" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_use_7') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="what_to_do_use_7"><h6>Carte 7 : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette carte." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                            </div>
+                            <div class="text-center">
+                                <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("what_to_do_img_7") ?>" alt="Image introuvable !">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="what_to_do_img_7" name="what_to_do_img_7" accept=".png, .jpg, .jpeg, .webp, .gif">
+                            </div>
+                            <h6 class="mt-2">Titre :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_title_7" name="what_to_do_title_7" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_title_7') ?>" required>
+                            <h6 class="mt-2">Texte :</h6>
+                            <input type="text" class="form-control" id="what_to_do_text_7" name="what_to_do_text_7" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_7') ?>" required>
+                            <h6 class="mt-2">URL :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_link_7" name="what_to_do_link_7" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_link_7') ?>">
                         </div>
-                        <div class="form-group">
-                            <label>Titre :</label>
-                            <input class="form-control text-center" type="text" id="slider_title_5" name="slider_title_5" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_title_5') ?>">
-                        </div>
-                        <div class="form-group">
-                            <label>Description :</label>
-                            <input class="form-control text-center" type="text" id="slider_text_5" name="slider_text_5" value="<?= ThemeModel::getInstance()->fetchConfigValue('slider_text_5') ?>">
+                    </div>
+                    <div class="col-12 col-lg-3">
+                        <div class="card me-2 p-3">
+                            <div class="form-check form-switch">
+                                <input class="form-check-input" type="checkbox" value="1" id="what_to_do_use_8" name="what_to_do_use_8" <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_use_8') ? 'checked' : '' ?>>
+                                <label class="form-check-label" for="what_to_do_use_1"><h6>Carte 8 : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette carte." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                            </div>
+                            <div class="text-center">
+                                <img class="w-50" src="<?= ThemeModel::getInstance()->fetchImageLink("what_to_do_img_8") ?>" alt="Image introuvable !">
+                                <input class="mt-2 form-control form-control-sm" type="file" id="what_to_do_img_8" name="what_to_do_img_8" accept=".png, .jpg, .jpeg, .webp, .gif">
+                            </div>
+                            <h6 class="mt-2">Titre :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_title_8" name="what_to_do_title_8" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_title_8') ?>" required>
+                            <h6 class="mt-2">Texte :</h6>
+                            <input type="text" class="form-control" id="what_to_do_text_8" name="what_to_do_text_8" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_8') ?>" required>
+                            <h6 class="mt-2">URL :</h6>
+                            <input type="text" class="mt-1 form-control" id="what_to_do_link_8" name="what_to_do_link_8" value="<?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_link_8') ?>">
                         </div>
                     </div>
                 </div>
             </div>
         </div>
-            <!--FONCTIONNALITÉS-->
-            <div class="card-in-card mt-4">
-                <div class="card-body">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" value="1" id="feature_section_active" name="feature_section_active" <?= ThemeModel::getInstance()->fetchConfigValue('feature_section_active') ? 'checked' : '' ?>>
-                        <label class="form-check-label" for="feature_section_active"><h6>Fonctionnalités : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette section." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
-                    </div>
-                    <h6>Titre de la section :</h6>
-                    <input type="text" class="form-control" name="feature_section_title" value="<?= ThemeModel::getInstance()->fetchConfigValue('feature_section_title') ?>" required>
-                    <div class="row mt-2">
-                        <div class="col card me-2">
-                            <label>Image :</label>
-                            <div class="text-center">
-                                <img src="<?= ThemeModel::getInstance()->fetchImageLink("feature_img_1") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature1.webp depuis votre panel !" width="160" height="160"/>
-                            </div>
-                            <div class="form-group">
-                                <input class="mt-2 form-control form-control-sm" type="file" id="feature_img_1" name="feature_img_1" accept="png,jpg,jpeg,webp,svg,gif">
-                                <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                            </div>
-                            <div class="form-group">
-                                <label>Titre :</label>
-                                <input class="form-control text-center" type="text" id="feature_title_1" name="feature_title_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('feature_title_1') ?>">
-                            </div>
-                            <div class="form-group">
-                                <label>Description :</label>
-                                <input class="form-control text-center" type="text" id="feature_description_1" name="feature_description_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('feature_description_1') ?>">
-                            </div>
-                        </div>
-                        <div class="col card me-2">
-                            <label>Image :</label>
-                            <div class="text-center">
-                                <img src="<?= ThemeModel::getInstance()->fetchImageLink("feature_img_2") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature2.webp depuis votre panel !" width="160" height="160">
-                            </div>
-                            <div class="form-group">
-                                <input class="mt-2 form-control form-control-sm" type="file" id="feature_img_2" name="feature_img_2" accept="png,jpg,jpeg,webp,svg,gif">
-                                <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                            </div>
-                            <div class="form-group">
-                                <label>Titre :</label>
-                                <input class="form-control text-center" type="text" id="feature_title_2" name="feature_title_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('feature_title_2') ?>">
-                            </div>
-                            <div class="form-group">
-                                <label>Description :</label>
-                                <input class="form-control text-center" type="text" id="feature_description_2" name="feature_description_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('feature_description_2') ?>">
-                            </div>
-                        </div>
-                        <div class="col card me-2">
-                            <label>Image :</label>
-                            <div class="text-center">
-                                <img src="<?= ThemeModel::getInstance()->fetchImageLink("feature_img_3") ?>" class="mb-3 mx-auto" alt="Vous devez upload feature3.webp depuis votre panel !" width="160" height="160">
-                            </div>
-                            <div class="form-group">
-                                <input class="mt-2 form-control form-control-sm" type="file" id="feature_img_3" name="feature_img_3" accept="png,jpg,jpeg,webp,svg,gif">
-                                <span>Fichiers autorisés : png, jpg, jpeg, webp, svg, gif</span>
-                            </div>
-                            <div class="form-group">
-                                <label>Titre :</label>
-                                <input class="form-control text-center" type="text" id="feature_title_3" name="feature_title_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('feature_title_3') ?>">
-                            </div>
-                            <div class="form-group">
-                                <label>Description :</label>
-                                <input class="form-control text-center" type="text" id="feature_description_3" name="feature_description_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('feature_description_3') ?>">
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
         <!--JOIN US-->
         <div class="card-in-card mt-4">
             <div class="card-body">
@@ -653,13 +698,9 @@
                     <label class="form-check-label" for="join_section_active"><h6>Nous rejoindre : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette section." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
                 </div>
                 <div class="row">
-                    <div class="col-12 col-lg-6">
+                    <div class="col-12">
                         <h6>Titre de la section :</h6>
                         <input type="text" class="form-control" name="join_title" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_title') ?>" required>
-                    </div>
-                    <div class="col-12 col-lg-6">
-                        <h6>Adresse sur serveur :</h6>
-                        <input type="text" class="form-control" name="join_ip" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_ip') ?>" required>
                     </div>
                 </div>
                 <div class="row mt-4">
@@ -669,11 +710,9 @@
                             <div class="text-center">
                                 <i style="font-size : 6rem;" class="<?= ThemeModel::getInstance()->fetchConfigValue('join_icon_1') ?>"></i>
                             </div>
-                            <h6 class="mt-2">Titre 1 :</h6>
-                            <input type="text" class="mt-1 form-control" id="join_step_1" name="join_step_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_step_1') ?>" required>
                             <h6 class="mt-2">Icône :</h6>
                             <input type="text" class="form-control" id="join_icon_1" name="join_icon_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_icon_1') ?>" required>
-                            <h6 class="mt-2">Titre 2 :</h6>
+                            <h6 class="mt-2">Titre :</h6>
                             <input type="text" class="mt-1 form-control" id="join_title_1" name="join_title_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_title_1') ?>" required>
                             <h6 class="mt-2">Texte :</h6>
                             <input type="text" class="mt-1 form-control" id="join_text_1" name="join_text_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_text_1') ?>" required>
@@ -685,11 +724,9 @@
                             <div class="text-center">
                                 <i style="font-size : 6rem;" class="<?= ThemeModel::getInstance()->fetchConfigValue('join_icon_2') ?>"></i>
                             </div>
-                            <h6 class="mt-2">Titre 1 :</h6>
-                            <input type="text" class="mt-1 form-control" id="join_step_2" name="join_step_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_step_2') ?>" required>
                             <h6 class="mt-2">Icône :</h6>
                             <input type="text" class="form-control" id="join_icon_2" name="join_icon_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_icon_2') ?>" required>
-                            <h6 class="mt-2">Titre 2 :</h6>
+                            <h6 class="mt-2">Titre :</h6>
                             <input type="text" class="mt-1 form-control" id="join_title_2" name="join_title_2" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_title_2') ?>" required>
                             <h6 class="mt-2">Texte :</h6>
                             <input type="text" class="mt-1 form-control" id="join_text_2" name="join_text_1" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_text_2') ?>" required>
@@ -701,11 +738,9 @@
                             <div class="text-center">
                                 <i style="font-size : 6rem;" class="<?= ThemeModel::getInstance()->fetchConfigValue('join_icon_3') ?>"></i>
                             </div>
-                            <h6 class="mt-2">Titre 1 :</h6>
-                            <input type="text" class="mt-1 form-control" id="join_step_3" name="join_step_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_step_3') ?>" required>
                             <h6 class="mt-2">Icône :</h6>
                             <input type="text" class="form-control" id="join_icon_3" name="join_icon_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_icon_3') ?>" required>
-                            <h6 class="mt-2">Titre 2 :</h6>
+                            <h6 class="mt-2">Titre :</h6>
                             <input type="text" class="mt-1 form-control" id="join_title_3" name="join_title_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_title_3') ?>" required>
                             <h6 class="mt-2">Texte :</h6>
                             <input type="text" class="mt-1 form-control" id="join_text_3" name="join_text_3" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_text_3') ?>" required>
@@ -717,11 +752,9 @@
                             <div class="text-center">
                                 <i style="font-size : 6rem;" class="<?= ThemeModel::getInstance()->fetchConfigValue('join_icon_4') ?>"></i>
                             </div>
-                            <h6 class="mt-2">Titre 1 :</h6>
-                            <input type="text" class="mt-1 form-control" id="join_step_4" name="join_step_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_step_4') ?>" required>
                             <h6 class="mt-2">Icône :</h6>
                             <input type="text" class="form-control" id="join_icon_4" name="join_icon_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_icon_4') ?>" required>
-                            <h6 class="mt-2">Titre 2 :</h6>
+                            <h6 class="mt-2">Titre :</h6>
                             <input type="text" class="mt-1 form-control" id="join_title_4" name="join_title_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_title_4') ?>" required>
                             <h6 class="mt-2">Texte :</h6>
                             <input type="text" class="mt-1 form-control" id="join_text_4" name="join_text_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('join_text_4') ?>" required>
@@ -730,23 +763,6 @@
                 </div>
             </div>
         </div>
-                <!--NEWS-->
-                <?php if (PackageController::isInstalled("News")): ?>
-            <div class="card-in-card mt-4">
-                <div class="card-body">
-                    <div class="form-check form-switch">
-                        <input class="form-check-input" type="checkbox" value="1" id="news_section_active" name="news_section_active" <?= ThemeModel::getInstance()->fetchConfigValue('news_section_active') ? 'checked' : '' ?>>
-                        <label class="form-check-label" for="news_section_active"><h6>Nouveautés : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette section." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
-                    </div>
-                    <label>Titre de la section :</label>
-                    <input type="text" class="form-control" name="news_section_title" value="<?= ThemeModel::getInstance()->fetchConfigValue('news_section_title') ?>" required>
-                    <div class="form-group">
-                        <label>Nombre de news à afficher :</label>
-                        <input class="form-control" type="number" id="news_number_display" name="news_number_display" value="<?= ThemeModel::getInstance()->fetchConfigValue('news_number_display') ?>">
-                     </div> 
-                </div>
-            </div>
-            <?php endif; ?>
             <!--CUSTOM 1-->
             <div class="card-in-card mt-4">
                 <div class="card-body">
@@ -786,15 +802,17 @@
                     <textarea name="custom_section_content_3" class="tinymce"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_content_3') ?></textarea>
                 </div>
             </div>
-        <!--CONTACT-->
+        <!--CUSTOM 4-->
         <div class="card-in-card mt-4">
             <div class="card-body">
                 <div class="form-check form-switch">
-                    <input class="form-check-input" type="checkbox" value="1" id="contact_section_active" name="contact_section_active" <?= ThemeModel::getInstance()->fetchConfigValue('contact_section_active') ? 'checked' : '' ?>>
-                    <label class="form-check-label" for="contact_section_active"><h6>Contact : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette section." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
+                    <input class="form-check-input" type="checkbox" value="1" id="custom_section_active_4" name="custom_section_active_4" <?= ThemeModel::getInstance()->fetchConfigValue('custom_section_active_4') ? 'checked' : '' ?>>
+                    <label class="form-check-label" for="custom_section_active_4"><h6>Personnalisable 4 : <i data-bs-toggle="tooltip" title="Vous pouvez activer ou non cette section." class="fa-sharp fa-solid fa-circle-question"></i></h6></label>
                 </div>
                 <label>Titre de la section :</label>
-                <input type="text" class="form-control" name="contact_section_title" value="<?= ThemeModel::getInstance()->fetchConfigValue('contact_section_title') ?>" required>
+                <input type="text" class="form-control" name="custom_section_title_4" value="<?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_4') ?>" required>
+                <label>Contenu :</label>
+                <textarea name="custom_section_content_4" class="tinymce"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_content_4') ?></textarea>
             </div>
         </div>
     </div>
@@ -1060,6 +1078,12 @@
                     <div class="row">
                         <div class="col-12 col-lg-4">
                             <div class="card me-2 p-3">
+                                <div class="col-12 col-lg-6 mt-2">
+                                    <div class="d-flex items-center">
+                                        <input type="color" id="forum_hover_card" name="forum_hover_card" value="<?= ThemeModel::getInstance()->fetchConfigValue('forum_hover_card') ?>">
+                                        <label style="margin-left: 0.5rem" for="forum_hover_card">Couleur lors du survol</label>
+                                    </div>
+                                </div>
                                 <h6>Titres :</h6>
                                 <h6>Sous-Forums :</h6>
                                 <input type="text" class="form-control" id="forum_sub_forum" name="forum_sub_forum" value="<?= ThemeModel::getInstance()->fetchConfigValue('forum_sub_forum') ?>" required>

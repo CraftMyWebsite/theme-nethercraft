@@ -11,7 +11,7 @@ use CMW\Utils\Website;
 
 </body>
 
-<footer id="particles" style="background-color: var(--footer-bg-color); color: var(--text-color)" class="mt-auto">
+<footer <?php if (ThemeModel::getInstance()->fetchConfigValue('allow_particles')): ?>id="particles"<?php endif; ?> style="background-color: var(--footer-bg-color); color: var(--text-color)" class="mt-auto">
     <div class="px-4 py-6 md:px-36 2xl:px-72">
         <div class="md:grid grid-cols-3 mb-4 items-center">
             <div>
@@ -67,7 +67,7 @@ use CMW\Utils\Website;
 
 <script>
     const particlesContainer = document.getElementById('particles');
-    const numberOfParticles = 15;
+    const numberOfParticles = <?= ThemeModel::getInstance()->fetchConfigValue('particles_number') ?>;
     for (let i = 0; i < numberOfParticles; i++) {
         let particle = document.createElement('div');
         particle.classList.add('particle');
