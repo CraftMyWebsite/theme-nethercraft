@@ -312,7 +312,7 @@ $siteName = Website::getWebsiteName();
     }
 </style>
 
-<body style="background-color: var(--bg-color); color: var(--text-color)" class=" font-<?= ThemeModel::getInstance()->fetchConfigValue('website_font') ?> flex flex-col min-h-screen">
+<body style="background-color: var(--bg-color); color: var(--text-color)" class="dark font-<?= ThemeModel::getInstance()->fetchConfigValue('website_font') ?> flex flex-col min-h-screen">
 <div class="overlay">
 </div>
 <?php
