@@ -41,7 +41,7 @@ Website::setDescription("Ajouter un sujet");
                         <div class="">
                             <i style="color: var(--main-color);" class="fa-solid fa-chevron-right"></i>
                             <a href="../../<?= $parent->getName() ?>"
-                               class="a-forum ml-2">fff</a>
+                               class="a-forum ml-2"><?= $parent->getName() ?></a>
                         </div>
                     </li>
                     <?php endforeach; ?>
