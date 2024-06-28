@@ -53,6 +53,7 @@ Website::setDescription(Website::getWebsiteDescription());
     <?php endif; ?>
 
     <?php if (PackageController::isInstalled("News")): ?>
+    <div>
         <?php if(ThemeModel::getInstance()->fetchConfigValue('news_section_active')): ?>
             <?php if ($firstNews != null): ?>
                 <div>
@@ -133,9 +134,11 @@ Website::setDescription(Website::getWebsiteDescription());
                         </div>
                     </div>
                 </div>
-            </div>
+                </div>
             <?php endif; ?>
         <?php endif; ?>
+    </div>
+
     <?php endif; ?>
 
     <?php if(ThemeModel::getInstance()->fetchConfigValue('use_what_to_do')): ?>

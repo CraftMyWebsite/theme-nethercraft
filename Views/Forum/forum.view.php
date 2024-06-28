@@ -124,9 +124,7 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                         <?php endif; ?>
                         <?php endforeach; ?>
                     </div>
-                </div>
             <?php endif ?>
-
             <div style="background: var(--card-bg-color);" class="p-4 rounded-lg h-fit">
                 <h4 style="color: var(--main-color)">Topics</h4>
                 <div class="mt-2 space-y-2">
@@ -385,7 +383,6 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                     </div>
                 </div>
             <?php endif; ?>
-
         </div>
 
             <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_use_widgets')): ?>
