@@ -286,5 +286,30 @@ Website::setDescription(Website::getWebsiteDescription());
             </div>
         </div>
     <?php endif; ?>
+
+    <?php if (PackageController::isInstalled('Newsletter')): ?>
+        <?php if (ThemeModel::getInstance()->fetchConfigValue('newsletter_section_active')): ?>
+        <div  class="px-8 py-4 mt-16">
+            <div class="text-center w-full">
+                <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_title') ?></h4>
+            </div>
+            <div class="">
+                <form action="newsletter" method="post" class="">
+                    <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_description') ?>
+                    <div class=" w-full">
+                        <input type="email" name="newsletter_users_mail" id="email-address-icon" class="input-focus bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded block w-full p-2.5" placeholder="votre@mail.com" required>
+                    </div>
+                    <div class="flex justify-center mt-4">
+                        <?php SecurityController::getPublicData(); ?>
+                    </div>
+                    <div class="text-center mt-4">
+                        <button type="submit" style="background-color: var(--bg-pixcraft); color: var(--nav-color-pixcraft-hover)" class="head-button px-2 py-1 rounded-lg"><?= ThemeModel::getInstance()->fetchConfigValue('newsletter_section_button') ?></button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        <?php endif; ?>
+    <?php endif; ?>
 </section>
 
