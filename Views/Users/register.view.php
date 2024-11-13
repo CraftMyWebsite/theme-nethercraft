@@ -20,7 +20,7 @@ Website::setDescription("Inscrivez-vous");
     <div class="">
         <div class="py-6 px-6 lg:px-8">
             <form class="space-y-6" action="" method="post">
-                <?php (new SecurityManager())->insertHiddenToken() ?>
+                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                 <div class="lg:grid grid-cols-2 gap-6">
                     <div>
                         <div>

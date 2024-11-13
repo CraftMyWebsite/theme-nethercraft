@@ -35,7 +35,7 @@ Website::setDescription("Consulter les catégorie du Forum");
         <div class="flex">
             <div class="relative w-full">
                 <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER')?>forum/search" method="POST">
-                    <?php (new SecurityManager())->insertHiddenToken() ?>
+                    <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                     <input type="text" name="for"
                            class="input-focus block p-1.5 w-full z-20 text-sm rounded-lg border-l-2"
                            placeholder="Rechercher">

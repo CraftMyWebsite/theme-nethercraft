@@ -16,7 +16,7 @@ Website::setDescription("C'est pas très bien d'oublié son mot de passe ...");
     <div class="">
         <div class="py-6 px-6 lg:px-8">
             <form class="space-y-6" action="" method="post">
-                <?php (new SecurityManager())->insertHiddenToken() ?>
+                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                 <div>
                     <label for="email" class="block mb-2 text-sm font-medium">Mail</label>
                     <input id="email" name="mail" type="email" class="input-focus border border-gray-300 text-sm rounded-lg block w-full p-2.5" placeholder="mail@craftmywebsite.fr" required>

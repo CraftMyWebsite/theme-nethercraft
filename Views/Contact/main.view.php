@@ -12,7 +12,7 @@ Website::setDescription("Contactez-nous dès maintenant");
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <div style="background: var(--card-bg-color);" class="rounded-lg p-6">
         <form action="" method="post" class="rounded-md p-8">
-            <?php (new SecurityManager())->insertHiddenToken() ?>
+            <?php SecurityManager::getInstance()->insertHiddenToken() ?>
             <div class="lg:grid grid-cols-2">
                 <div class="px-4 w-full">
                     <label for="email-address-icon" class="block mb-2 text-sm font-medium">Votre mail :</label>
