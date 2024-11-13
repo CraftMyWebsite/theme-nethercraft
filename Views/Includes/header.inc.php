@@ -2,18 +2,17 @@
 
 use CMW\Controller\Core\PackageController;
 use CMW\Controller\Minecraft\MinecraftController;
+use CMW\Controller\Users\UsersSessionsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Controller\Users\UsersController;
 use CMW\Model\Core\MenusModel;
 use CMW\Model\Minecraft\MinecraftModel;
-use CMW\Model\Shop\Cart\ShopCartModel;
 use CMW\Model\Shop\Cart\ShopCartItemModel;
-use CMW\Model\Users\UsersModel;
 use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 if (PackageController::isInstalled("Shop")) {
-    $itemInCart = ShopCartItemModel::getInstance()->countItemsByUserId(UsersModel::getCurrentUser()?->getId(), session_id());
+    $itemInCart = ShopCartItemModel::getInstance()->countItemsByUserId(UsersSessionsController::getInstance()->getCurrentUser()?->getId(), session_id());
 }
 
 if (PackageController::isInstalled("Minecraft")) {
@@ -109,7 +108,7 @@ $menus = MenusModel::getInstance();
             <div style="background: var(--card-bg-color)" class="py-4 px-6 col-span-3 rounded-lg">
                 <div class="flex lg:justify-between items-center">
                     <div class="flex items-center space-x-2 lg:space-x-6">
-                        <img class="hidden lg:inline mr-2" loading="lazy" alt="player head" width="80px" src="https://apiv2.craftmywebsite.fr/skins/3d/user=<?= UsersModel::getCurrentUser()?->getPseudo() ?>&headOnly=true">
+                        <img class="hidden lg:inline mr-2" loading="lazy" alt="player head" width="80px" src="https://apiv2.craftmywebsite.fr/skins/3d/user=<?= UsersSessionsController::getInstance()->getCurrentUser()?->getPseudo() ?>&headOnly=true">
                         <div class="hidden lg:block">
                             <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('header_welcome_title') ?></h4>
                             <p><?= ThemeModel::getInstance()->fetchConfigValue('header_welcome_text') ?></p>
@@ -126,7 +125,7 @@ $menus = MenusModel::getInstance();
                         </div>
                     <?php else: ?>
                         <button id="dropdownDelayButton" data-dropdown-offset-distance=0 data-dropdown-toggle="dropdownPlayer" data-dropdown-delay="10" data-dropdown-trigger="hover" class="head-button rounded-lg py-2 px-4">
-                            <?= UsersModel::getCurrentUser()->getPseudo() ?> <i class="fa-solid fa-chevron-down"></i>
+                            <?= UsersSessionsController::getInstance()->getCurrentUser()->getPseudo() ?> <i class="fa-solid fa-chevron-down"></i>
                         </button>
                         <div id="dropdownPlayer" style="background-color: var(--main-color); z-index: 500;" class="hidden shadow w-full md:w-52 rounded shadow">
                             <div aria-labelledby="dropdownDelayButton" class="flex flex-col">
