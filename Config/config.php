@@ -443,7 +443,7 @@ if (PackageController::isInstalled("News")) {
             </div>
             <div>
                 <label for="first_news">News 1 :</label>
-                <select id="first_news" class="form-select" name="first_news" required>
+                <select id="first_news" class="form-select" name="first_news">
                     <?php foreach ($newsList as $news): ?>
                         <option value="<?= $news->getNewsId() ?>" <?= ThemeModel::getInstance()->fetchConfigValue('first_news') === strval($news->getNewsId()) ? 'selected' : '' ?>>
                             <?= $news->getTitle() ." (". $news->getDateCreated() .")" ?>
@@ -453,7 +453,7 @@ if (PackageController::isInstalled("News")) {
             </div>
             <div>
                 <label for="first_news">News 2 :</label>
-                <select id="first_news" class="form-select" name="second_news" required>
+                <select id="first_news" class="form-select" name="second_news">
                     <?php foreach ($newsList as $news): ?>
                         <option value="<?= $news->getNewsId() ?>" <?= ThemeModel::getInstance()->fetchConfigValue('second_news') === strval($news->getNewsId()) ? 'selected' : '' ?>>
                             <?= $news->getTitle() ." (". $news->getDateCreated() .")" ?>
@@ -463,7 +463,7 @@ if (PackageController::isInstalled("News")) {
             </div>
             <div>
                 <label for="first_news">News 3 :</label>
-                <select id="first_news" class="form-select" name="third_news" required>
+                <select id="first_news" class="form-select" name="third_news">
                     <?php foreach ($newsList as $news): ?>
                         <option value="<?= $news->getNewsId() ?>" <?= ThemeModel::getInstance()->fetchConfigValue('third_news') === strval($news->getNewsId()) ? 'selected' : '' ?>>
                             <?= $news->getTitle() ." (". $news->getDateCreated() .")" ?>
