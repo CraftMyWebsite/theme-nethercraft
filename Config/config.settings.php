@@ -43,6 +43,7 @@ return [
     "header_button_icon" => "fa-solid fa-basket-shopping",
     "header_button_link" => $shop_link,
     "join_ip" => "play.nethercraft.fr",
+    "show_server_status" => "0",
     "header_discord_members" => "10",
     "header_discord_text" => "discord.gg/nethercraft",
     "header_discord_invite_link" => "https://discord.gg/invite/nethercraft",

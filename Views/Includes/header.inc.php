@@ -20,6 +20,7 @@ if (PackageController::isInstalled("Minecraft")) {
     $favExist = $mc->favExist();
     if ($favExist) {
         $minecraft = MinecraftController::pingServer($mc->getFavServer()->getServerIp(), $mc->getFavServer()->getServerPort())->getPlayersOnline();
+        $minecraftStatus = MinecraftModel::getInstance()->getFavServer()->getServerStatus();
     }
 
 }
@@ -66,6 +67,11 @@ $menus = MenusModel::getInstance();
         <div class="hidden lg:flex justify-end items-center col-span-2">
             <div class="flex justify-end items-center space-x-4 hyper-play-card">
                 <div onclick="copyURL('<?= ThemeModel::getInstance()->fetchConfigValue('join_ip') ?>')" class="text-right cursor-pointer text-hover">
+                    <?php if (ThemeModel::getInstance()->fetchConfigValue('show_server_status')): ?>
+                        <?= $minecraftStatus === 0 ? '<span style="padding: 0 .4rem; background: #b34b0a; border-radius: 6px">Hors-Ligne</span>' : '' ?>
+                        <?= $minecraftStatus === 1 ? '<span style="padding: 0 .4rem; background: #039a0b; border-radius: 6px">En ligne</span>' : '' ?>
+                        <?= $minecraftStatus === -1 ? '<span style="padding: 0 .4rem; background: #a19e09; border-radius: 6px;">Maintenance</span>' : '' ?>
+                    <?php endif; ?>
                     <p style="color: var(--main-color)" class="uppercase text-xl font-bold hyper-title">
                         <?php if ($favExist): ?>
                             <?= $minecraft ?>

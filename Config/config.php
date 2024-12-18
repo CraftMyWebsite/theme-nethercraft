@@ -294,6 +294,12 @@ if (PackageController::isInstalled("News")) {
             <div>
                 <div class="col-12 mt-4">
                     <h6>Rejoindre :</h6>
+                    <label class="toggle">
+                        <p class="toggle-label">Afficher le status du serveur</p>
+                        <input type="checkbox" class="toggle-input" name="show_server_status"
+                               id="show_server_status" <?= ThemeModel::getInstance()->fetchConfigValue('show_server_status') ? 'checked' : '' ?>>
+                        <div class="toggle-slider"></div>
+                    </label>
                     <label for="join_ip">Adresse IP</label>
                     <input class="input" type="text" id="join_ip" name="join_ip"  value="<?= ThemeModel::getInstance()->fetchConfigValue('join_ip') ?>">
                 </div>
