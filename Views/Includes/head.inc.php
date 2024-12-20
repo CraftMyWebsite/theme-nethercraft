@@ -187,6 +187,8 @@ $siteName = Website::getWebsiteName();
         right: 0;
         bottom: 0;
         left: 0;
+        background-position: center;
+        background-size: cover;
         background-image: var(--url-image-what-to-do);
         filter: blur(var(--what-to-do-blur));
         z-index: 10;
