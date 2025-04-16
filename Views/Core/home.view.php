@@ -30,7 +30,7 @@ Website::setDescription(Website::getWebsiteDescription());
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <!-- Personnalisé 1 -->
     <?php if(ThemeModel::getInstance()->fetchConfigValue('custom_section_active_1')): ?>
-    <div style="background: var(--card-bg-color);" class="hidden px-8 py-4">
+    <div style="background: var(--card-bg-color);" class="px-8 py-4">
         <div class="text-center w-full">
             <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_1') ?></h4>
         </div>
@@ -42,7 +42,7 @@ Website::setDescription(Website::getWebsiteDescription());
 
     <!-- Personnalisé 2 -->
     <?php if(ThemeModel::getInstance()->fetchConfigValue('custom_section_active_2')): ?>
-    <div style="background: var(--card-bg-color);" class="hidden px-8 py-4">
+    <div style="background: var(--card-bg-color);" class="px-8 py-4">
         <div class="text-center w-full">
             <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_2') ?></h4>
         </div>
@@ -265,7 +265,7 @@ Website::setDescription(Website::getWebsiteDescription());
 
     <!-- Personnalisé 3 -->
     <?php if(ThemeModel::getInstance()->fetchConfigValue('custom_section_active_3')): ?>
-        <div style="background: var(--card-bg-color);" class="hidden px-8 py-4">
+        <div style="background: var(--card-bg-color);" class="px-8 py-4">
             <div class="text-center w-full">
                 <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_3') ?></h4>
             </div>
@@ -277,7 +277,7 @@ Website::setDescription(Website::getWebsiteDescription());
 
     <!-- Personnalisé 4 -->
     <?php if(ThemeModel::getInstance()->fetchConfigValue('custom_section_active_4')): ?>
-        <div style="background: var(--card-bg-color);" class="hidden px-8 py-4">
+        <div style="background: var(--card-bg-color);" class="px-8 py-4">
             <div class="text-center w-full">
                 <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('custom_section_title_4') ?></h4>
             </div>
