@@ -14,7 +14,7 @@ Website::setDescription("Consulter les catégorie du Forum");
 ?>
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <section class="lg:grid grid-cols-4 gap-6">
-        <div style="background: var(--card-bg-color);" class="col-span-3 p-2 rounded-lg">
+        <div data-cmw-style="background:global:card_bg_color" class="col-span-3 p-2 rounded-lg">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li class="">
@@ -50,8 +50,8 @@ Website::setDescription("Consulter les catégorie du Forum");
     <section class="<?php if (ThemeModel::getInstance()->fetchConfigValue('forum_use_widgets')): ?>lg:grid <?php endif; ?> grid-cols-4 gap-6 my-8">
         <div class="col-span-3 space-y-6">
             <?php if ($category->isUserAllowed()): ?>
-            <div style="background: var(--card-bg-color);" class="p-4 rounded-lg h-fit">
-                <h4 style="color: var(--main-color)"><?= $category->getFontAwesomeIcon() ?> <?= $category->getName() ?></h4>
+            <div data-cmw-style="background:global:card_bg_color" class="p-4 rounded-lg h-fit">
+                <h4 data-cmw-style="color:global:main_color"><?= $category->getFontAwesomeIcon() ?> <?= $category->getName() ?></h4>
                 <div class="mt-2 space-y-2">
                     <?php foreach ($forumModel->getForumByCat($category->getId()) as $forumObj): ?>
                     <?php if ($forumObj->isUserAllowed()): ?>
@@ -109,9 +109,9 @@ Website::setDescription("Consulter les catégorie du Forum");
         <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_use_widgets')): ?>
             <section class="h-fit space-y-6">
                 <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_stats')): ?>
-                    <div style="background: var(--card-bg-color);" class="w-full rounded-lg p-4">
+                    <div data-cmw-style="background:global:card_bg_color" class="w-full rounded-lg p-4">
                         <div class="flex">
-                            <h4 style="color: var(--main-color)">Stats forum</h4>
+                            <h4 data-cmw-style="color:global:main_color">Stats forum</h4>
                         </div>
                         <div class="">
                             <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_member')): ?>
@@ -138,9 +138,9 @@ Website::setDescription("Consulter les catégorie du Forum");
                     </div>
                 <?php endif; ?>
                 <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_custom')): ?>
-                    <div style="background: var(--card-bg-color);" class="w-full rounded-lg p-4">
+                    <div data-cmw-style="background:global:card_bg_color" class="w-full rounded-lg p-4">
                         <div class="flex">
-                            <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_custom_title') ?></h4>
+                            <h4 data-cmw-style="color:global:main_color"><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_custom_title') ?></h4>
                         </div>
                         <div class=""><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_custom_text') ?></div>
                     </div>

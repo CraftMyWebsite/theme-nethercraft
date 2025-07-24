@@ -12,7 +12,7 @@ Website::setDescription("Éditez votre profil");
 ?>
 
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
-    <div style="background: var(--card-bg-color);" class="rounded-lg py-6 px-4 space-y-3 h-fit">
+    <div data-cmw-style="background:global:card_bg_color" class="rounded-lg py-6 px-4 space-y-3 h-fit">
         <div class="lg:grid grid-cols-2 gap-6">
             <div style="background-color: var(--card-in-card-bg-color);" class="shadow-xl h-fit">
                 <div class="page-title-divider text-center pt-1 w-full">

@@ -12,7 +12,7 @@ Website::setDescription(ucfirst($page->getTitle()));
 ?>
 
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
-    <div style="background: var(--card-bg-color);" class="rounded-lg p-6">
+    <div data-cmw-style="background:global:card_bg_color" class="rounded-lg p-6">
         <?= $page->getConverted() ?>
     </div>
 </section>

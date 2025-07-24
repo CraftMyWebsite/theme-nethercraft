@@ -13,8 +13,8 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('faq_descrip
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <div class="<?php if(ThemeModel::getInstance()->fetchConfigValue('faq_display_form')): {echo "lg:grid grid-cols-3 gap-6";} endif ?>">
         <?php if(ThemeModel::getInstance()->fetchConfigValue('faq_display_form')): ?>
-        <div style="background: var(--card-bg-color);" class="rounded-lg py-6 px-4 space-y-3 h-fit">
-            <h4 style="color: var(--main-color)" class="text-center"><?= ThemeModel::getInstance()->fetchConfigValue('faq_question_title') ?></h4>
+        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg py-6 px-4 space-y-3 h-fit">
+            <h4 data-cmw-style="color:global:main_color" class="text-center"><?= ThemeModel::getInstance()->fetchConfigValue('faq_question_title') ?></h4>
             <form action="contact" method="post">
                 <?php SecurityManager::getInstance()->insertHiddenToken() ?>
                 <div class="px-4 w-full mt-2">
@@ -42,8 +42,8 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('faq_descrip
             </form>
         </div>
         <?php endif; ?>
-        <div style="background: var(--card-bg-color);" class="rounded-lg p-6 col-span-2 h-fit space-y-4">
-            <h4 style="color: var(--main-color)" class="text-center"><?= ThemeModel::getInstance()->fetchConfigValue('faq_answer_title') ?></h4>
+        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg p-6 col-span-2 h-fit space-y-4">
+            <h4 data-cmw-style="color:global:main_color" class="text-center"><?= ThemeModel::getInstance()->fetchConfigValue('faq_answer_title') ?></h4>
             <?php foreach ($faqList as $faq) : ?>
             <div class="border rounded-lg px-4 py-2 border-gray-600">
                 <div class="flex justify-between">

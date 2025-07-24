@@ -15,7 +15,7 @@ Website::setDescription("Éditez un topic");
 
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <section class=" gap-6">
-        <div style="background: var(--card-bg-color);" class="col-span-3 p-2 rounded-lg">
+        <div data-cmw-style="background:global:card_bg_color" class="col-span-3 p-2 rounded-lg">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li class="">
@@ -49,7 +49,7 @@ Website::setDescription("Éditez un topic");
         </div>
     </section>
 
-    <section style="background: var(--card-bg-color);" class="rounded-lg">
+    <section data-cmw-style="background:global:card_bg_color" class="rounded-lg">
         <div class="rounded-md shadow-lg p-8">
 
             <h4>Édition du topic : <b><?= $topic->getName() ?></b></h4>

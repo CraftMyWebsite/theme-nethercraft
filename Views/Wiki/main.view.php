@@ -9,8 +9,8 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('wiki_descri
 ?>
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <div class="lg:grid grid-cols-4 gap-6">
-        <div style="background: var(--card-bg-color);" class="rounded-lg py-6 px-4 space-y-3 h-fit">
-            <h4 style="color: var(--main-color)" class="text-center"><?= ThemeModel::getInstance()->fetchConfigValue('wiki_menu_title') ?></h4>
+        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg py-6 px-4 space-y-3 h-fit">
+            <h4 data-cmw-style="color:global:main_color" class="text-center"><?= ThemeModel::getInstance()->fetchConfigValue('wiki_menu_title') ?></h4>
                     <?php foreach ($categories as $categorie): ?>
                 <div class="flex flex-col space-y-1">
                     <p class="uppercase font-bold">
@@ -21,9 +21,9 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('wiki_descri
                 </div>
                     <?php endforeach; ?>
         </div>
-        <div style="background: var(--card-bg-color);" class="rounded-lg p-6 col-span-3 h-fit">
+        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg p-6 col-span-3 h-fit">
             <?php if($article !== null): ?>
-            <h4 style="color: var(--main-color)" class="text-center"><?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_article_icon')): ?><i class="<?= $article->getIcon() ?>"></i><?php endif; ?> <?= $article->getTitle() ?></h4>
+            <h4 data-cmw-style="color:global:main_color" class="text-center"><?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_article_icon')): ?><i class="<?= $article->getIcon() ?>"></i><?php endif; ?> <?= $article->getTitle() ?></h4>
             <?= $article->getContent() ?>
             <hr>
             <div class="flex flex-wrap justify-between items-center mt-2">
@@ -32,7 +32,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('wiki_descri
                 <?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_edit_date')): ?><p class="text-xs">Modifié le : <?= $article->getDateUpdate() ?></p><?php endif; ?>
             </div>
             <?php elseif($firstArticle === null && $article !== null): ?>
-            <h4 style="color: var(--main-color)" class="text-center">Aucun article</h4>
+            <h4 data-cmw-style="color:global:main_color" class="text-center">Aucun article</h4>
             Nos administrateurs travaille dessus !
             <hr>
             <div class="flex flex-wrap justify-between items-center mt-2">
@@ -41,7 +41,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('wiki_descri
                 <?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_edit_date')): ?><p class="text-xs">Modifié le : Jamais</p><?php endif; ?>
             </div>
             <?php else: ?>
-            <h4 style="color: var(--main-color)" class="text-center"><?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_article_icon')): ?><i class="<?= $firstArticle->getIcon() ?>"></i><?php endif; ?> <?= $firstArticle->getTitle() ?></h4>
+            <h4 data-cmw-style="color:global:main_color" class="text-center"><?php if(ThemeModel::getInstance()->fetchConfigValue('wiki_display_article_icon')): ?><i class="<?= $firstArticle->getIcon() ?>"></i><?php endif; ?> <?= $firstArticle->getTitle() ?></h4>
                 <?= $firstArticle->getContent() ?>
             <hr>
             <div class="flex flex-wrap justify-between items-center mt-2">

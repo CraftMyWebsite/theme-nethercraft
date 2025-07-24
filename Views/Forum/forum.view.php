@@ -31,7 +31,7 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
 
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <section class="lg:grid grid-cols-4 gap-6">
-        <div style="background: var(--card-bg-color);" class="col-span-3 p-2 rounded-lg">
+        <div data-cmw-style="background:global:card_bg_color" class="col-span-3 p-2 rounded-lg">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li class="">
@@ -72,8 +72,8 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
     <section class="<?php if (ThemeModel::getInstance()->fetchConfigValue('forum_use_widgets')): ?>lg:grid <?php endif; ?> grid-cols-4 gap-6 my-8">
         <div class="col-span-3 space-y-6">
             <?php if ($forumModel->getSubforumByForum($forum->getId(), true)): ?>
-                <div style="background: var(--card-bg-color);" class="p-4 rounded-lg h-fit">
-                    <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('forum_sub_forum') ?></h4>
+                <div data-cmw-style="background:global:card_bg_color" class="p-4 rounded-lg h-fit">
+                    <h4 data-cmw-style="color:global:main_color"><?= ThemeModel::getInstance()->fetchConfigValue('forum_sub_forum') ?></h4>
 
                     <?php foreach ($forumModel->getSubforumByForum($forum->getId(), true) as $forumEntity): ?>
                     <?php if ($forumEntity->isUserAllowed()): ?>
@@ -125,8 +125,8 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                         <?php endforeach; ?>
                     </div>
             <?php endif ?>
-            <div style="background: var(--card-bg-color);" class="p-4 rounded-lg h-fit">
-                <h4 style="color: var(--main-color)">Topics</h4>
+            <div data-cmw-style="background:global:card_bg_color" class="p-4 rounded-lg h-fit">
+                <h4 data-cmw-style="color:global:main_color">Topics</h4>
                 <div class="mt-2 space-y-2">
                     <?php foreach ($topics as $topic): ?>
                         <div class="w-full hover-topic-forum">
@@ -212,7 +212,7 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                                          class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
                                         <div class="relative w-full h-full max-w-2xl md:h-auto">
                                             <!-- Modal content -->
-                                            <div style="background: var(--card-bg-color);" class="relative bg-white rounded-lg shadow">
+                                            <div data-cmw-style="background:global:card_bg_color" class="relative bg-white rounded-lg shadow">
                                                 <!-- Modal header -->
                                                 <div
                                                     class="flex items-start justify-between p-4 border-b rounded-t">
@@ -364,19 +364,19 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                 <div class="mx-auto mt-4">
                     <div class="flex justify-center">
                         <?php if ($currentPage !== "1"): ?>
-                            <a href="fp1" style="background-color: var(--main-color);"
+                            <a href="fp1" data-cmw-style="background-color:global:main_color"
                                class="mr-2 p-1 text-sm font-medium rounded-lg ">
                                 <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a>
-                            <a href="fp<?=$currentPage-1?>" style="background-color: var(--main-color);"
+                            <a href="fp<?=$currentPage-1?>" data-cmw-style="background-color:global:main_color"
                                class="p-1 text-sm font-medium rounded-l-lg">
                                 <i class="fa-solid fa-chevron-left"></i></a>
                         <?php endif; ?>
-                        <span style="background-color: var(--main-color);" class="p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
+                        <span data-cmw-style="background-color:global:main_color" class="p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
                         <?php if ($currentPage !== $totalPage): ?>
-                            <a href="fp<?=$currentPage+1?>" style="background-color: var(--main-color);"
+                            <a href="fp<?=$currentPage+1?>" data-cmw-style="background-color:global:main_color"
                                class="p-1 text-sm font-medium rounded-r-lg">
                                 <i class="fa-solid fa-chevron-right"></i></a>
-                            <a href="fp<?=$totalPage?>" style="background-color: var(--main-color);"
+                            <a href="fp<?=$totalPage?>" data-cmw-style="background-color:global:main_color"
                                class="ml-2 p-1 text-sm font-medium rounded-lg">
                                 <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a>
                         <?php endif; ?>
@@ -388,9 +388,9 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
             <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_use_widgets')): ?>
                 <section class="h-fit space-y-6">
                     <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_stats')): ?>
-                        <div style="background: var(--card-bg-color);" class="w-full rounded-lg p-4">
+                        <div data-cmw-style="background:global:card_bg_color" class="w-full rounded-lg p-4">
                             <div class="flex">
-                                <h4 style="color: var(--main-color)">Stats forum</h4>
+                                <h4 data-cmw-style="color:global:main_color">Stats forum</h4>
                             </div>
                             <div class="">
                                 <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_member')): ?>
@@ -417,9 +417,9 @@ Website::setDescription("Consultez les sujets de discussion et répondez aux que
                         </div>
                     <?php endif; ?>
                     <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_custom')): ?>
-                        <div style="background: var(--card-bg-color);" class="w-full rounded-lg p-4">
+                        <div data-cmw-style="background:global:card_bg_color" class="w-full rounded-lg p-4">
                             <div class="flex">
-                                <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_custom_title') ?></h4>
+                                <h4 data-cmw-style="color:global:main_color"><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_custom_title') ?></h4>
                             </div>
                             <div class=""><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_custom_text') ?></div>
                         </div>

@@ -86,37 +86,27 @@ $siteName = Website::getWebsiteName();
 
 
     :root {
-        --what-to-do-text-color: <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_text_color') ?>;
-        --what-to-do-blur: <?= ThemeModel::getInstance()->fetchConfigValue('what_to_do_blur') ?>px;
-        --what-to-do-img-1: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_1') ?>");
-        --what-to-do-img-2: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_2') ?>");
-        --what-to-do-img-3: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_3') ?>");
-        --what-to-do-img-4: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_4') ?>");
-        --what-to-do-img-5: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_5') ?>");
-        --what-to-do-img-6: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_6') ?>");
-        --what-to-do-img-7: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_7') ?>");
-        --what-to-do-img-8: url("<?= ThemeModel::getInstance()->fetchImageLink('what_to_do_img_8') ?>");
-        --main-color: <?= ThemeModel::getInstance()->fetchConfigValue('main_color') ?>;
-        --link-color: <?= ThemeModel::getInstance()->fetchConfigValue('link_color') ?>;
-        --hover-link-color: <?= ThemeModel::getInstance()->fetchConfigValue('hover_link_color') ?>;
-        --bg-color : <?= ThemeModel::getInstance()->fetchConfigValue('bg_color') ?>;
-        --card-bg-color : <?= ThemeModel::getInstance()->fetchConfigValue('card_bg_color') ?>;
-        --card-in-card-bg-color : <?= ThemeModel::getInstance()->fetchConfigValue('card_in_card_bg_color') ?>;
-        --forum-hover-card : <?= ThemeModel::getInstance()->fetchConfigValue('forum_hover_card') ?>;
-        --footer-bg-color : <?= ThemeModel::getInstance()->fetchConfigValue('footer_bg_color') ?>;
-        --input-bg-color : <?= ThemeModel::getInstance()->fetchConfigValue('input_bg_color') ?>;
-        --input-border-color : <?= ThemeModel::getInstance()->fetchConfigValue('input_border_color') ?>;
-        --input-text-color : <?= ThemeModel::getInstance()->fetchConfigValue('input_text_color') ?>;
-        --text-color : <?= ThemeModel::getInstance()->fetchConfigValue('text_color') ?>;
-        --particles-tall : <?= ThemeModel::getInstance()->fetchConfigValue('particles_tall') ?>px;
-        --logo-float-duration : <?= ThemeModel::getInstance()->fetchConfigValue('logo_float_duration') ?>s;
-        --nav-text-color : <?= ThemeModel::getInstance()->fetchConfigValue('nav_text_color') ?>;
-        --nav-active-color : <?= ThemeModel::getInstance()->fetchConfigValue('nav_active_color') ?>;
-        --flotant-translate : <?= ThemeModel::getInstance()->fetchConfigValue('float_translate') ?>px;
-        --alert-text-color: <?= ThemeModel::getInstance()->fetchConfigValue('alert_text_color') ?>;
-        --new-img-rotate : <?= ThemeModel::getInstance()->fetchConfigValue('new_img_rotate') ?>deg;
-        --new-img-scale : <?= ThemeModel::getInstance()->fetchConfigValue('new_img_scale') ?>;
-        --new-img-time : <?= ThemeModel::getInstance()->fetchConfigValue('new_img_time') ?>s;
+        --what-to-do-blur: <?= ThemeModel::getInstance()->fetchConfigValue('home-wtd','what_to_do_blur') ?>px;
+        --main-color: <?= ThemeModel::getInstance()->fetchConfigValue('global', 'main_color') ?>;
+        --link-color: <?= ThemeModel::getInstance()->fetchConfigValue('global', 'link_color') ?>;
+        --hover-link-color: <?= ThemeModel::getInstance()->fetchConfigValue('global', 'hover_link_color') ?>;
+        --bg-color : <?= ThemeModel::getInstance()->fetchConfigValue('global', 'bg_color') ?>;
+        --card-in-card-bg-color : <?= ThemeModel::getInstance()->fetchConfigValue('global', 'card_in_card_bg_color') ?>;
+        --forum-hover-card : <?= ThemeModel::getInstance()->fetchConfigValue('global', 'forum_hover_card') ?>;
+        --footer-bg-color : <?= ThemeModel::getInstance()->fetchConfigValue('global', 'footer_bg_color') ?>;
+        --input-bg-color : <?= ThemeModel::getInstance()->fetchConfigValue('global', 'input_bg_color') ?>;
+        --input-border-color : <?= ThemeModel::getInstance()->fetchConfigValue('global', 'input_border_color') ?>;
+        --input-text-color : <?= ThemeModel::getInstance()->fetchConfigValue('global', 'input_text_color') ?>;
+        --text-color : <?= ThemeModel::getInstance()->fetchConfigValue('global', 'text_color') ?>;
+        --particles-tall : <?= ThemeModel::getInstance()->fetchConfigValue('global','particles_tall') ?>px;
+        --logo-float-duration : <?= ThemeModel::getInstance()->fetchConfigValue('header', 'logo_float_duration') ?>s;
+        --nav-text-color : <?= ThemeModel::getInstance()->fetchConfigValue('global','nav_text_color') ?>;
+        --nav-active-color : <?= ThemeModel::getInstance()->fetchConfigValue('global','nav_active_color') ?>;
+        --flotant-translate : <?= ThemeModel::getInstance()->fetchConfigValue('header', 'float_translate') ?>px;
+        --alert-text-color: <?= ThemeModel::getInstance()->fetchConfigValue('alert', 'alert_text_color') ?>;
+        --new-img-rotate : <?= ThemeModel::getInstance()->fetchConfigValue('home-news', 'new_img_rotate') ?>deg;
+        --new-img-scale : <?= ThemeModel::getInstance()->fetchConfigValue('home-news','new_img_scale') ?>;
+        --new-img-time : <?= ThemeModel::getInstance()->fetchConfigValue('home-news','new_img_time') ?>s;
     }
 
     ::-webkit-scrollbar {
@@ -167,7 +157,6 @@ $siteName = Website::getWebsiteName();
 
     .overlay {
         position: absolute;
-        background: linear-gradient(to bottom, var(--main-color) 0%,var(--bg-color) 100%);
         height: 50vh;
         top: 0;
         left: 0;
@@ -212,10 +201,6 @@ $siteName = Website::getWebsiteName();
     }
 
     .input-focus:checked {
-        background-color: var(--main-color);
-    }
-
-    .head-button {
         background-color: var(--main-color);
     }
 
@@ -309,7 +294,7 @@ $siteName = Website::getWebsiteName();
         }
     }
 
-    <?php if (ThemeModel::getInstance()->fetchConfigValue('allow_floating')): ?>
+    <?php if (ThemeModel::getInstance()->fetchConfigValue('header','allow_floating')): ?>
     .floating {
         animation: floatAnimation var(--logo-float-duration) ease-in-out infinite;
     }
@@ -324,9 +309,12 @@ $siteName = Website::getWebsiteName();
     }
 </style>
 
-<body style="background-color: var(--bg-color); color: var(--text-color)" class="dark font-<?= ThemeModel::getInstance()->fetchConfigValue('website_font') ?> flex flex-col min-h-screen">
-<div class="overlay">
+<body data-cmw-style="background-color:global:bg_color;color:global:text_color" data-cmw-class="global:website_font" class="dark flex flex-col min-h-screen">
+<div class="overlay"
+    style="background: linear-gradient(to bottom, var(--main-color) 0%, var(--bg-color) 100%);"
+    data-cmw-var="--main-color:global:main_color --bg-color:global:bg_color">
 </div>
+
 <?php
 View::loadInclude($includes, "beforeScript");
 echo CoreController::getInstance()->cmwWarn();

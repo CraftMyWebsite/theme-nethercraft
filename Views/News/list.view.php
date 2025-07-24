@@ -13,14 +13,14 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <div class="lg:grid grid-cols-2 gap-6">
         <?php foreach ($newsList as $news): ?>
-        <div style="background: var(--card-bg-color);" class="flex flex-col ">
+        <div data-cmw-style="background:global:card_bg_color" class="flex flex-col ">
             <div class="relative h-52 overflow-hidden">
                 <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" class="rotate-news">
                     <img src="<?= $news->getImageLink() ?>" style="object-fit: cover" class="rotate-news-img top-0 left-0 absolute w-full h-full">
                 </a>
             </div>
             <div class="px-6 py-4 space-y-4">
-                <h4 style="color: var(--main-color)"><?= $news->getTitle() ?></h4>
+                <h4 data-cmw-style="color:global:main_color"><?= $news->getTitle() ?></h4>
                 <p><?= $news->getDescription() ?></p>
                 <div class="flex items-center space-x-2">
                     <img width="40px" loading="lazy" src="https://apiv2.craftmywebsite.fr/skins/2d/user=<?= $news->getAuthor()->getPseudo() ?>&headOnly=true">

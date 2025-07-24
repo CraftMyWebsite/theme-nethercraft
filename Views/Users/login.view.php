@@ -26,7 +26,7 @@ Website::setDescription("Connectez-vous sur " . Website::getWebsiteName());
                     <label for="password" class="block mb-2 text-sm font-medium ">Mot de passe</label>
                     <div class="flex">
                         <input type="password" name="login_password" id="passwordInput" placeholder="••••••••" class="input-focus bg-gray-50 border border-gray-300 text-sm rounded-l-lg block w-full p-2.5" required>
-                        <div onclick="showPassword()" style="background-color: var(--main-color);" class="cursor-pointer p-2.5 text-sm font-medium rounded-r-lg"><i class="fa fa-eye-slash" aria-hidden="true"></i></div>
+                        <div onclick="showPassword()" data-cmw-style="background-color:global:main_color" class="cursor-pointer p-2.5 text-sm font-medium rounded-r-lg"><i class="fa fa-eye-slash" aria-hidden="true"></i></div>
                     </div>
                 </div>
                 <div class="flex justify-between">

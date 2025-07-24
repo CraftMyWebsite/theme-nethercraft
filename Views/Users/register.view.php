@@ -31,7 +31,7 @@ Website::setDescription("Inscrivez-vous");
                             <label for="passwordInput" class="block mb-2 text-sm font-medium">Mot de passe</label>
                             <div class="flex">
                                 <input id="passwordInput" type="password" name="register_password" placeholder="••••••••" class="input-focus block  border border-gray-300 text-sm rounded-l-lg w-full p-2.5" required>
-                                <div onclick="showPassword()" style="background-color: var(--main-color);" class="cursor-pointer p-2.5 text-sm font-medium rounded-r-lg"><i class="fa fa-eye-slash"></i></div>
+                                <div onclick="showPassword()" data-cmw-style="background-color:global:main_color" class="cursor-pointer p-2.5 text-sm font-medium rounded-r-lg"><i class="fa fa-eye-slash"></i></div>
                             </div>
                         </div>
                     </div>
@@ -44,7 +44,7 @@ Website::setDescription("Inscrivez-vous");
                             <label for="passwordInputV" class="block mb-2 text-sm font-medium">Confirmation</label>
                             <div class="flex">
                                 <input id="passwordInputV" type="password" name="register_password_verify" placeholder="••••••••" class="input-focus block  border border-gray-300 text-sm rounded-l-lg w-full p-2.5" required>
-                                <div onclick="showPasswordV()" style="background-color: var(--main-color);" class="cursor-pointer p-2.5 text-sm font-medium rounded-r-lg"><i class="fa fa-eye-slash"></i></div>
+                                <div onclick="showPasswordV()" data-cmw-style="background-color:global:main_color" class="cursor-pointer p-2.5 text-sm font-medium rounded-r-lg"><i class="fa fa-eye-slash"></i></div>
                             </div>
                         </div>
                     </div>

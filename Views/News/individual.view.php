@@ -14,7 +14,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
 ?>
 
     <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
-        <div style="background: var(--card-bg-color);" class="flex flex-col rounded-lg">
+        <div data-cmw-style="background:global:card_bg_color" class="flex flex-col rounded-lg">
             <div class="relative h-52 overflow-hidden">
                 <a class="rotate-news">
                     <img src="<?= $news->getImageLink() ?>" style="object-fit: cover" class="rotate-news-img top-0 left-0 absolute w-full h-full">
@@ -22,7 +22,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
             </div>
             <div class="px-6 py-4 space-y-4">
                 <div class="text-center">
-                    <h4 style="color: var(--main-color)"><?= $news->getTitle() ?></h4>
+                    <h4 data-cmw-style="color:global:main_color"><?= $news->getTitle() ?></h4>
                     <p><?= $news->getDescription() ?></p>
                 </div>
 
@@ -66,9 +66,9 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
             </div>
         </div>
 <?php if ($news->isCommentsStatus()): ?>
-        <div style="background: var(--card-bg-color);" class="rounded-lg h-fit p-4">
+        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg h-fit p-4">
             <div class="page-title-divider text-center pt-1 w-full">
-                <h4 style="color: var(--main-color)">Espace commentaire</h4>
+                <h4 data-cmw-style="color:global:main_color">Espace commentaire</h4>
             </div>
             <div class="p-4">
     <?php foreach ($news->getComments() as $comment): ?>

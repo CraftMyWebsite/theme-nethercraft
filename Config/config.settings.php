@@ -59,10 +59,10 @@ return [
             new EditorValue(
                 title: 'Taille du logo',
                 themeKey: 'site_image_width',
-                defaultValue: '60',
+                defaultValue: '130',
                 type: EditorType::RANGE,
                 rangeOptions: [
-                    new EditorRangeOptions(min: 0, max: 256,step: 1,suffix: 'px')
+                    new EditorRangeOptions(min: 0, max: 500,step: 1,suffix: 'px')
                 ]
             ),
             new EditorValue(
@@ -177,24 +177,15 @@ return [
                 type: EditorType::TEXT,
             ),
             new EditorValue(
-                title: 'Couleur du bandeau',
+                title: 'Couleur du texte',
                 themeKey: 'alert_text_color',
                 defaultValue: '#e3e3e3',
                 type: EditorType::COLOR,
             ),
-            new EditorValue(
-                title: 'Durée du flash',
-                themeKey: 'header_alert_duration',
-                defaultValue: '0.5',
-                type: EditorType::RANGE,
-                rangeOptions: [
-                    new EditorRangeOptions(min: 0, max: 1,step: 0.1)
-                ]
-            ),
         ]
     ),
     new EditorMenu(
-        title: 'Globaux',
+        title: 'Couleurs & Typo',
         key: 'global',
         scope: null,
         requiredPackage: null,
@@ -334,98 +325,6 @@ return [
         ]
     ),
     new EditorMenu(
-        title: 'Accueil - Rejoindre',
-        key: 'home-join',
-        scope: null,
-        requiredPackage: null,
-        values: [
-            new EditorValue(
-                title: 'Activer',
-                themeKey: 'join_section_active',
-                defaultValue: '1',
-                type: EditorType::BOOLEAN,
-            ),
-            new EditorValue(
-                title: 'Titre de la section',
-                themeKey: 'join_title',
-                defaultValue: 'Nous rejoindre',
-                type: EditorType::TEXT
-            ),
-            new EditorValue(
-                title: 'Rejoindre 1 : Icon',
-                themeKey: 'join_icon_1',
-                defaultValue: 'fa-solid fa-cube',
-                type: EditorType::FONTAWESOMEPICKER,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 1 : Titre',
-                themeKey: 'join_title_1',
-                defaultValue: 'Lance ton jeu',
-                type: EditorType::TEXT,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 1 : Text',
-                themeKey: 'join_text_1',
-                defaultValue: 'Nous autorisons les versions premium de la <b>1.18</b> à la <b>1.21</b>',
-                type: EditorType::HTML,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 2 : Icon',
-                themeKey: 'join_icon_2',
-                defaultValue: 'fa-solid fa-plus',
-                type: EditorType::FONTAWESOMEPICKER,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 2 : Titre',
-                themeKey: 'join_title_2',
-                defaultValue: 'Ajoute le serveur',
-                type: EditorType::TEXT,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 2 : Text',
-                themeKey: 'join_text_2',
-                defaultValue: 'Rends-toi dans <b>Multijoueur</b> puis clique sur <b>Nouveau serveur</b>',
-                type: EditorType::HTML,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 3 : Icon',
-                themeKey: 'join_icon_3',
-                defaultValue: 'fa-solid fa-keyboard',
-                type: EditorType::FONTAWESOMEPICKER,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 3 : Titre',
-                themeKey: 'join_title_3',
-                defaultValue: 'Saisis l\'adresse',
-                type: EditorType::TEXT,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 3 : Text',
-                themeKey: 'join_text_3',
-                defaultValue: "Ajoute play.nethercraft.fr",
-                type: EditorType::HTML,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 4 : Icon',
-                themeKey: 'join_icon_4',
-                defaultValue: 'fa-solid fa-hand-holding-heart',
-                type: EditorType::FONTAWESOMEPICKER,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 4 : Titre',
-                themeKey: 'join_title_4',
-                defaultValue: 'Rejoins-Nous',
-                type: EditorType::TEXT,
-            ),
-            new EditorValue(
-                title: 'Rejoindre 4 : Text',
-                themeKey: 'join_text_4',
-                defaultValue: 'Rejoins-nous et passe un bon moment sur NetherCraft',
-                type: EditorType::HTML,
-            ),
-        ]
-    ),
-    new EditorMenu(
         title: 'Accueil - News',
         key: 'home-news',
         scope: null,
@@ -467,21 +366,21 @@ return [
             new EditorValue(
                 title: '1 ere News',
                 themeKey: 'first_news',
-                defaultValue: 1,
+                defaultValue: '1',
                 type: EditorType::SELECT,
                 selectOptions: $newsOptions
             ),
             new EditorValue(
                 title: '2 eme News',
                 themeKey: 'second_news',
-                defaultValue: 1,
+                defaultValue: '1',
                 type: EditorType::SELECT,
                 selectOptions: $newsOptions
             ),
             new EditorValue(
                 title: '3 eme News',
                 themeKey: 'third_news',
-                defaultValue: 1,
+                defaultValue: '1',
                 type: EditorType::SELECT,
                 selectOptions: $newsOptions
             ),
@@ -521,12 +420,12 @@ return [
                 ]
             ),
             new EditorValue(
-                title: 'Grille',
+                title: 'Grillage',
                 themeKey: 'what_to_do_grid',
                 defaultValue: '4',
                 type: EditorType::RANGE,
                 rangeOptions: [
-                    new EditorRangeOptions(min: 0, max: 8,step: 1)
+                    new EditorRangeOptions(min: 2, max: 8,step: 1,prefix: 'grid-cols-')
                 ]
             ),
             new EditorValue(
@@ -559,12 +458,6 @@ return [
                 defaultValue: '#',
                 type: EditorType::TEXT,
             ),
-
-
-
-
-
-
             new EditorValue(
                 title: 'Activer WTD 2',
                 themeKey: 'what_to_do_use_2',
@@ -777,7 +670,98 @@ return [
             ),
         ]
     ),
-
+    new EditorMenu(
+        title: 'Accueil - Rejoindre',
+        key: 'home-join',
+        scope: null,
+        requiredPackage: null,
+        values: [
+            new EditorValue(
+                title: 'Activer',
+                themeKey: 'join_section_active',
+                defaultValue: '1',
+                type: EditorType::BOOLEAN,
+            ),
+            new EditorValue(
+                title: 'Titre de la section',
+                themeKey: 'join_title',
+                defaultValue: 'Nous rejoindre',
+                type: EditorType::TEXT
+            ),
+            new EditorValue(
+                title: 'Rejoindre 1 : Icon',
+                themeKey: 'join_icon_1',
+                defaultValue: 'fa-solid fa-cube',
+                type: EditorType::FONTAWESOMEPICKER,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 1 : Titre',
+                themeKey: 'join_title_1',
+                defaultValue: 'Lance ton jeu',
+                type: EditorType::TEXT,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 1 : Text',
+                themeKey: 'join_text_1',
+                defaultValue: 'Nous autorisons les versions premium de la <b>1.18</b> à la <b>1.21</b>',
+                type: EditorType::HTML,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 2 : Icon',
+                themeKey: 'join_icon_2',
+                defaultValue: 'fa-solid fa-plus',
+                type: EditorType::FONTAWESOMEPICKER,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 2 : Titre',
+                themeKey: 'join_title_2',
+                defaultValue: 'Ajoute le serveur',
+                type: EditorType::TEXT,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 2 : Text',
+                themeKey: 'join_text_2',
+                defaultValue: 'Rends-toi dans <b>Multijoueur</b> puis clique sur <b>Nouveau serveur</b>',
+                type: EditorType::HTML,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 3 : Icon',
+                themeKey: 'join_icon_3',
+                defaultValue: 'fa-solid fa-keyboard',
+                type: EditorType::FONTAWESOMEPICKER,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 3 : Titre',
+                themeKey: 'join_title_3',
+                defaultValue: 'Saisis l\'adresse',
+                type: EditorType::TEXT,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 3 : Text',
+                themeKey: 'join_text_3',
+                defaultValue: "Ajoute play.nethercraft.fr",
+                type: EditorType::HTML,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 4 : Icon',
+                themeKey: 'join_icon_4',
+                defaultValue: 'fa-solid fa-hand-holding-heart',
+                type: EditorType::FONTAWESOMEPICKER,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 4 : Titre',
+                themeKey: 'join_title_4',
+                defaultValue: 'Rejoins-Nous',
+                type: EditorType::TEXT,
+            ),
+            new EditorValue(
+                title: 'Rejoindre 4 : Text',
+                themeKey: 'join_text_4',
+                defaultValue: 'Rejoins-nous et passe un bon moment sur NetherCraft',
+                type: EditorType::HTML,
+            ),
+        ]
+    ),
     new EditorMenu(
         title: 'Accueil - Newsletter',
         key: 'home-newsletter',

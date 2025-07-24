@@ -31,7 +31,7 @@ $i = 0;
 
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <section class="lg:grid grid-cols-4 gap-6">
-        <div style="background: var(--card-bg-color);" class="col-span-3 p-2 rounded-lg">
+        <div data-cmw-style="background:global:card_bg_color" class="col-span-3 p-2 rounded-lg">
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li class="">
@@ -79,24 +79,24 @@ $i = 0;
         </div>
     </section>
 
-    <section style="background: var(--card-bg-color);" class="rounded-lg p-4">
+    <section data-cmw-style="background:global:card_bg_color" class="rounded-lg p-4">
         <?php if ($totalPage > "1"): ?>
             <div class="mx-auto">
                 <div class="flex justify-center">
                     <?php if ($currentPage !== "1"): ?>
-                        <a href="p1" style="background-color: var(--main-color);"
+                        <a href="p1" data-cmw-style="background-color:global:main_color"
                            class="mr-2 p-1 text-sm font-medium rounded-lg ">
                             <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a>
-                        <a href="p<?=$currentPage-1?>" style="background-color: var(--main-color);"
+                        <a href="p<?=$currentPage-1?>" data-cmw-style="background-color:global:main_color"
                            class="p-1 text-sm font-medium rounded-l-lg">
                             <i class="fa-solid fa-chevron-left"></i></a>
                     <?php endif; ?>
-                    <span style="background-color: var(--main-color);" class="p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
+                    <span data-cmw-style="background-color:global:main_color" class="p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
                     <?php if ($currentPage !== $totalPage): ?>
-                        <a href="p<?=$currentPage+1?>" style="background-color: var(--main-color);"
+                        <a href="p<?=$currentPage+1?>" data-cmw-style="background-color:global:main_color"
                            class="p-1 text-sm font-medium rounded-r-lg">
                             <i class="fa-solid fa-chevron-right"></i></a>
-                        <a href="p<?=$totalPage?>" style="background-color: var(--main-color);"
+                        <a href="p<?=$totalPage?>" data-cmw-style="background-color:global:main_color"
                            class="ml-2 p-1 text-sm font-medium rounded-lg">
                             <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a>
                     <?php endif; ?>
@@ -179,7 +179,7 @@ $i = 0;
                      class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
                     <div class="relative w-full h-full max-w-2xl md:h-auto">
                         <!-- Modal content -->
-                        <div style="background: var(--card-bg-color);" class="relative rounded-lg ">
+                        <div data-cmw-style="background:global:card_bg_color" class="relative rounded-lg ">
                             <!-- Modal header -->
                             <div
                                 class="flex items-start justify-between p-4 border-b rounded-t">
@@ -232,7 +232,7 @@ $i = 0;
 
                 <div class="lg:grid grid-cols-5">
                     <div class="p-4 text-center ">
-                        <div style="background-color: var(--card-bg-color)" class="rounded-lg">
+                        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg">
                             <div class="p-2">
                                 <div class="w-36 h-36 mx-auto">
                                     <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
@@ -241,7 +241,7 @@ $i = 0;
                                 </div>
                             </div>
                             <h5 class="font-semibold"><?= $topic->getUser()->getPseudo() ?></h5>
-                            <div style="background-color: var(--card-bg-color)" class="pb-1">
+                            <div data-cmw-style="background:global:card_bg_color" class="pb-1">
                                 <p>
                                     <small><?= ForumPermissionRoleModel::getInstance()->getHighestRoleByUser($topic->getUser()->getId())->getName() ?></small>
                                 </p>
@@ -271,7 +271,7 @@ $i = 0;
                         </div>
                     </div>
                     <div class="col-span-4 py-4 pr-2">
-                        <div style="background-color: var(--card-bg-color)" class="rounded-lg p-2 h-fit">
+                        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg p-2 h-fit">
                             <?= $topic->getContent() ?>
                             <div class="flex justify-between mt-4">
                                 <p><small><?= $topic->getUser()->getPseudo() ?>, <?= $topic->getCreated() ?></small></p>
@@ -372,7 +372,7 @@ $i = 0;
 
 
             <div class="flex flex-no-wrap justify-center items-center py-4">
-                <h4 style="color: var(--main-color)">Réponses</h4>
+                <h4 data-cmw-style="color:global:main_color">Réponses</h4>
             </div>
 
 
@@ -400,7 +400,7 @@ $i = 0;
                          class="fixed top-0 left-0 right-0 z-50 hidden w-full p-4 overflow-x-hidden overflow-y-auto md:inset-0 h-[calc(100%-1rem)] md:h-full">
                         <div class="relative w-full h-full max-w-2xl md:h-auto">
                             <!-- Modal content -->
-                            <div style="background-color: var(--card-bg-color)" class="relative rounded-lg ">
+                            <div data-cmw-style="background:global:card_bg_color" class="relative rounded-lg ">
                                 <!-- Modal header -->
                                 <div
                                     class="flex items-start justify-between p-4 border-b rounded-t ">
@@ -452,7 +452,7 @@ $i = 0;
 
                     <div class="lg:grid grid-cols-5">
                         <div class="p-4 text-center ">
-                            <div style="background-color: var(--card-bg-color)" class="rounded-lg">
+                            <div data-cmw-style="background:global:card_bg_color" class="rounded-lg">
                                 <div class="p-2">
                                     <div class="w-36 h-36 mx-auto">
                                         <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
@@ -491,7 +491,7 @@ $i = 0;
                             </div>
                         </div>
                         <div class="col-span-4 py-4 pr-2">
-                            <div style="background-color: var(--card-bg-color)" class="rounded-lg p-2 h-fit">
+                            <div data-cmw-style="background:global:card_bg_color" class="rounded-lg p-2 h-fit">
                                 <?= $response->getContent() ?>
                                 <div class="flex justify-between mt-4">
                                     <p><small><?= $response->getUser()->getPseudo() ?>
@@ -647,19 +647,19 @@ $i = 0;
                 <div class="mx-auto mt-4">
                     <div class="flex justify-center">
                         <?php if ($currentPage !== "1"): ?>
-                            <a href="p1" style="background-color: var(--main-color);"
+                            <a href="p1" data-cmw-style="background-color:global:main_color"
                                class="mr-2 p-1 text-sm font-medium rounded-lg ">
                                 <i class="fa-solid fa-chevron-left"></i><i class="fa-solid fa-chevron-left"></i></a>
-                            <a href="p<?=$currentPage-1?>" style="background-color: var(--main-color);"
+                            <a href="p<?=$currentPage-1?>" data-cmw-style="background-color:global:main_color"
                                class="p-1 text-sm font-medium rounded-l-lg">
                                 <i class="fa-solid fa-chevron-left"></i></a>
                         <?php endif; ?>
-                        <span style="background-color: var(--main-color);" class="p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
+                        <span data-cmw-style="background-color:global:main_color" class="p-1 text-sm"><?= $currentPage?>/<?= $totalPage?></span>
                         <?php if ($currentPage !== $totalPage): ?>
-                            <a href="p<?=$currentPage+1?>" style="background-color: var(--main-color);"
+                            <a href="p<?=$currentPage+1?>" data-cmw-style="background-color:global:main_color"
                                class="p-1 text-sm font-medium rounded-r-lg">
                                 <i class="fa-solid fa-chevron-right"></i></a>
-                            <a href="p<?=$totalPage?>" style="background-color: var(--main-color);"
+                            <a href="p<?=$totalPage?>" data-cmw-style="background-color:global:main_color"
                                class="ml-2 p-1 text-sm font-medium rounded-lg">
                                 <i class="fa-solid fa-chevron-right"></i><i class="fa-solid fa-chevron-right"></i></a>
                         <?php endif; ?>
@@ -674,7 +674,7 @@ $i = 0;
                     </div>
                     <div class="lg:grid grid-cols-5">
                         <div class="p-4 text-center ">
-                            <div style="background-color: var(--card-bg-color)" class="rounded-lg pt-2">
+                            <div data-cmw-style="background:global:card_bg_color" class="rounded-lg pt-2">
                                 <div class="w-36 h-36 mx-auto ">
                                     <img style="object-fit: fill; max-height: 144px; max-width: 144px" width="144px"
                                          height="144px"

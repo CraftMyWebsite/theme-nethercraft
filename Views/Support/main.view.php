@@ -20,9 +20,9 @@ Website::setDescription("Consultez les réponses de nos experts.");
         <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>support/private" class="head-button font-medium text-sm rounded px-2 py-1">Voir mes demandes</a>
     </div>
     <div class="<?php if ($config->getDefaultVisibility() && $config->visibilityIsDefinedByCustomer() || !$config->visibilityIsDefinedByCustomer()): ?>lg:grid grid-cols-3<?php endif; ?> gap-6">
-        <div style="background: var(--card-bg-color);" class="rounded-lg h-fit p-4">
+        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg h-fit p-4">
             <div class="page-title-divider text-center pt-1 w-full">
-                <h2 style="color: var(--main-color)" class="text-xl uppercase">Nouvelle demande</h2>
+                <h2 data-cmw-style="color:global:main_color" class="text-xl uppercase">Nouvelle demande</h2>
             </div>
             <div class="p-4">
                 <form class="space-y-6" action="" method="post">
@@ -51,16 +51,16 @@ Website::setDescription("Consultez les réponses de nos experts.");
             </div>
         </div>
         <?php if ($config->getDefaultVisibility() && $config->visibilityIsDefinedByCustomer() || !$config->visibilityIsDefinedByCustomer()): ?>
-        <div style="background: var(--card-bg-color);" class="rounded-lg  col-span-2 h-fit p-4">
+        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg  col-span-2 h-fit p-4">
             <div class="page-title-divider text-center pt-1 w-full">
-                <h2 style="color: var(--main-color)"class=" text-xl uppercase">Support publique</h2>
+                <h2 data-cmw-style="color:global:main_color"class=" text-xl uppercase">Support publique</h2>
             </div>
             <div class="mt-4">
                 <div class="lg:grid grid-cols-3 gap-6 lg:space-x-0 space-x-4">
                     <?php foreach ($publicSupport as $support): ?>
                     <a href="<?= $support->getUrl() ?>">
                         <div style="background: var(--card-in-card-bg-color);" class=" lg:mb-4">
-                            <h6 class="p-1" style="background-color: var(--main-color);"><?= mb_strimwidth($support->getQuestion(), 0, 30, '...') ?></h6>
+                            <h6 class="p-1" data-cmw-style="background-color:global:main_color"><?= mb_strimwidth($support->getQuestion(), 0, 30, '...') ?></h6>
                             <div class="px-2 py-2">
                                 <p>Statut : <?= $support->getStatusFormatted() ?></p>
                                 <p>Date : <?= $support->getCreated() ?></p>

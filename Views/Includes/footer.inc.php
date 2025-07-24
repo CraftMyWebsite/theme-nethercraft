@@ -12,12 +12,12 @@ use CMW\Utils\Website;
 </body>
 
 <span data-cmw-visible="global:allow_particles" id="particles"></span>
-<footer style="background-color: var(--footer-bg-color); color: var(--text-color)" class="mt-auto">
+<footer data-cmw-style="background-color:global:footer_bg_color;color:global:text_color" class="mt-auto">
     <div class="px-4 py-6 md:px-36 2xl:px-72">
         <div class="md:grid grid-cols-3 mb-4 items-center">
             <div>
                 <h3 class="">
-                    <img data-cmw-visible="footer:footer_use_logo" class="hidden md:inline mr-2" alt="logo" width="120px" src="<?= ThemeModel::getInstance()->fetchImageLink("header_img_logo") ?>">
+                    <img data-cmw-visible="footer:footer_use_logo" class="hidden md:inline mr-2" alt="logo" width="120px" data-cmw-attr="src:header:header_img_logo">
                     <span data-cmw-visible="footer:footer_use_title"><?= Website::getWebsiteName() ?></span>
                 </h3>
             </div>

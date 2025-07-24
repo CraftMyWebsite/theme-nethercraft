@@ -66,13 +66,13 @@ $menus = MenusModel::getInstance();
     <div class="lg:grid grid-cols-5 mt-8">
         <div class="hidden lg:flex justify-end items-center col-span-2">
             <div class="flex justify-end items-center space-x-4 hyper-play-card">
-                <div onclick="copyURL('<?= ThemeModel::getInstance()->fetchConfigValue('join_ip') ?>')" class="text-right cursor-pointer text-hover">
-                    <?php if (ThemeModel::getInstance()->fetchConfigValue('show_server_status')): ?>
+                <div onclick="copyURL('<?= ThemeModel::getInstance()->fetchConfigValue('header', 'join_ip') ?>')" class="text-right cursor-pointer text-hover">
+                    <span data-cmw-visible="header:show_server_status">
                         <?= $minecraftStatus === 0 ? '<span style="padding: 0 .4rem; background: #b34b0a; border-radius: 6px">Hors-Ligne</span>' : '' ?>
                         <?= $minecraftStatus === 1 ? '<span style="padding: 0 .4rem; background: #039a0b; border-radius: 6px">En ligne</span>' : '' ?>
                         <?= $minecraftStatus === -1 ? '<span style="padding: 0 .4rem; background: #a19e09; border-radius: 6px;">Maintenance</span>' : '' ?>
-                    <?php endif; ?>
-                    <p style="color: var(--main-color)" class="uppercase text-xl font-bold hyper-title">
+                    </span>
+                    <p data-cmw-style="color:global:main_color" class="uppercase text-xl font-bold hyper-title">
                         <?php if ($favExist): ?>
                             <?= $minecraft ?>
                         <?php else: ?>
@@ -81,29 +81,25 @@ $menus = MenusModel::getInstance();
                             <?php endif; ?>
                         <?php endif; ?>
                         joueurs en ligne</p>
-                    <p class="uppercase text-sm"><?= ThemeModel::getInstance()->fetchConfigValue('join_ip') ?></p>
+                    <p class="uppercase text-sm" data-cmw="header:join_ip"></p>
                 </div>
-                <i style="color: var(--main-color)" class="cursor-pointer fa-circle-play fa-solid fa-circle-play text-5xl"></i>
+                <i data-cmw-style="color:global:main_color" class="cursor-pointer fa-circle-play fa-solid fa-circle-play text-5xl"></i>
             </div>
         </div>
         <div>
             <div class="text-center">
                 <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>">
-                    <?php if (ThemeModel::getInstance()->fetchConfigValue('header_active_logo')): ?>
-                    <img class="mx-auto floating" alt="logo" width="30%" src="<?= ThemeModel::getInstance()->fetchImageLink("header_img_logo") ?>"><br>
-                    <?php endif; ?>
-                    <?php if (ThemeModel::getInstance()->fetchConfigValue('header_active_title')): ?>
-                    <h3 class="floating"><?= Website::getWebsiteName() ?></h3>
-                    <?php endif; ?>
+                    <img data-cmw-visible="header:header_active_logo" data-cmw-attr="src:header:header_img_logo" data-cmw-style="width:header:site_image_width" class="mx-auto floating" alt="logo"><br>
+                    <h3 data-cmw-visible="header:header_active_title" class="floating"><?= Website::getWebsiteName() ?></h3>
                 </a>
             </div>
         </div>
-        <div onclick="openURL('<?= ThemeModel::getInstance()->fetchConfigValue('header_discord_invite_link') ?>')" class="hidden lg:flex justify-start items-center col-span-2">
+        <div onclick="openURL('<?= ThemeModel::getInstance()->fetchConfigValue('header','header_discord_invite_link') ?>')" class="hidden lg:flex justify-start items-center col-span-2">
             <div class="flex justify-start items-center space-x-4 hyper-card">
-                <i style="color: var(--main-color)" class="fa-brands fa-discord cursor-pointer fa-circle-play text-5xl"></i>
+                <i data-cmw-style="color:global:main_color" class="fa-brands fa-discord cursor-pointer fa-circle-play text-5xl"></i>
                 <div class="cursor-pointer text-hover">
-                    <p style="color: var(--main-color)" class="uppercase text-xl font-bold hyper-title"><?= ThemeModel::getInstance()->fetchConfigValue('header_discord_members') ?> membres sur discord</p>
-                    <p class="uppercase text-sm"><?= ThemeModel::getInstance()->fetchConfigValue('header_discord_text') ?></p>
+                    <p data-cmw-style="color:global:main_color" class="uppercase text-xl font-bold hyper-title" ><span data-cmw="header:header_discord_members"></span> membres sur discord</p>
+                    <p class="uppercase text-sm" data-cmw="header:header_discord_text"></p>
                 </div>
             </div>
         </div>
@@ -111,27 +107,23 @@ $menus = MenusModel::getInstance();
 
     <div class="px-4 lg:px-36 2xl:px-72 mt-8">
         <div class="lg:grid grid-cols-4 items-center">
-            <div style="background: var(--card-bg-color)" class="py-4 px-6 col-span-3 rounded-lg">
+            <div data-cmw-style="background:global:card_bg_color" class="py-4 px-6 col-span-3 rounded-lg">
                 <div class="flex lg:justify-between items-center">
                     <div class="flex items-center space-x-2 lg:space-x-6">
                         <img class="hidden lg:inline mr-2" loading="lazy" alt="player head" width="80px" src="https://apiv2.craftmywebsite.fr/skins/3d/user=<?= UsersSessionsController::getInstance()->getCurrentUser()?->getPseudo() ?>&headOnly=true">
                         <div class="hidden lg:block">
-                            <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('header_welcome_title') ?></h4>
-                            <p><?= ThemeModel::getInstance()->fetchConfigValue('header_welcome_text') ?></p>
+                            <h4 data-cmw-style="color:global:main_color" data-cmw="header:header_welcome_title"></h4>
+                            <p data-cmw="header:header_welcome_text"></p>
                         </div>
                     </div>
                     <?php if (!UsersController::isUserLogged()): ?>
                         <div class="lg:ml-auto mx-auto lg:mx-0 space-x-3">
-                            <?php if (ThemeModel::getInstance()->fetchConfigValue('header_allow_login_button')): ?>
-                            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="head-button rounded-lg py-2 px-4 text-lg space-x-3"><i class="fa-solid fa-user"></i><span>Connexion</span></a>
-                            <?php endif; ?>
-                            <?php if (ThemeModel::getInstance()->fetchConfigValue('header_allow_register_button')): ?>
-                            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>register" class="head-button rounded-lg py-2 px-4 text-lg space-x-3"><i class="fa-solid fa-plus"></i><span>S'inscrire</span></a>
-                            <?php endif; ?>
+                            <a data-cmw-style="background:global:main_color" data-cmw-visible="header:header_allow_login_button" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="head-button rounded-lg py-2 px-4 text-lg space-x-3"><i class="fa-solid fa-user"></i><span>Connexion</span></a>
+                            <a data-cmw-style="background:global:main_color" data-cmw-visible="header:header_allow_register_button" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>register" class="head-button rounded-lg py-2 px-4 text-lg space-x-3"><i class="fa-solid fa-plus"></i><span>S'inscrire</span></a>
                         </div>
                     <?php else: ?>
                     <div class="inline-flex">
-                        <button id="dropdownDelayButton" data-dropdown-offset-distance=0 data-dropdown-toggle="dropdownPlayer" data-dropdown-delay="10" data-dropdown-trigger="hover" class="head-button rounded-lg py-2 px-4">
+                        <button id="dropdownDelayButton" data-dropdown-offset-distance=0 data-dropdown-toggle="dropdownPlayer" data-dropdown-delay="10" data-dropdown-trigger="hover" data-cmw-style="background:global:main_color" class="head-button rounded-lg py-2 px-4">
                             <?= UsersSessionsController::getInstance()->getCurrentUser()->getPseudo() ?> <i class="fa-solid fa-chevron-down"></i>
                         </button>
                         <?php if (PackageController::isInstalled('Shop')): ?>
@@ -162,20 +154,18 @@ $menus = MenusModel::getInstance();
                 </div>
             </div>
             <div class="hidden lg:block text-center">
-                <a href="<?= ThemeModel::getInstance()->fetchConfigValue('header_button_link') ?>" class="head-button rounded-lg p-7 text-2xl space-x-6"><i><?= ThemeModel::getInstance()->fetchConfigValue('header_button_text') ?></i> <i class="<?= ThemeModel::getInstance()->fetchConfigValue('header_button_icon') ?>"></i></a>
+                <a data-cmw-attr="href:header:header_button_link" data-cmw-style="background:global:main_color" class="head-button rounded-lg p-7 text-2xl space-x-6"><i data-cmw="header:header_button_text"></i> <i data-cmw-class="header:header_button_icon" ></i></a>
             </div>
         </div>
     </div>
 </section>
 
-<?php if (ThemeModel::getInstance()->fetchConfigValue('header_alert')): ?>
-    <section class="mb-6 px-4 md:px-36 2xl:px-72">
-        <div style="background: var(--main-color); color: var(--alert-text-color)" class="px-4 py-2 rounded-lg text-center">
-            <h4><?= ThemeModel::getInstance()->fetchConfigValue('header_alert_title') ?></h4>
-            <p><?= ThemeModel::getInstance()->fetchConfigValue('header_alert_text') ?></p>
+    <section data-cmw-visible="alert:header_alert" class="mb-6 px-4 md:px-36 2xl:px-72">
+        <div data-cmw-style="color:alert:alert_text_color;background:global:main_color" class="px-4 py-2 rounded-lg text-center">
+            <h4 data-cmw="alert:header_alert_title"></h4>
+            <p data-cmw="alert:header_alert_text"></p>
         </div>
     </section>
-<?php endif; ?>
 
 <link rel="stylesheet"
       href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') . 'Admin/Resources/Vendors/Izitoast/iziToast.min.css' ?>">

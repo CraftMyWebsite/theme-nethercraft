@@ -22,7 +22,7 @@ Website::setDescription("Consultez les réponses de nos experts.");
             <?php endif; ?>
         </div>
     </div>
-    <div style="background: var(--card-bg-color);" class="rounded-lg col-span-2 h-fit p-4">
+    <div data-cmw-style="background:global:card_bg_color" class="rounded-lg col-span-2 h-fit p-4">
         <div class="p-6">
             <div class="flex flex-wrap justify-between items-center">
                 <p>Auteur : <?= $support->getUser()->getPseudo() ?></p>

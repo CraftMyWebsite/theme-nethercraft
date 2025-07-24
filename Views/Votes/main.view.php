@@ -15,9 +15,9 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
 ?>
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <div class="lg:grid grid-cols-3 gap-6">
-        <div style="background-color: var(--card-bg-color);" class="rounded-lg h-fit">
+        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg h-fit">
             <div class="page-title-divider text-center pt-1 w-full">
-                <h4 style="color: var(--main-color)"><?= ThemeModel::getInstance()->fetchConfigValue('votes_participate_title') ?></h4>
+                <h4 data-cmw-style="color:global:main_color"><?= ThemeModel::getInstance()->fetchConfigValue('votes_participate_title') ?></h4>
             </div>
             <div class="p-4">
                 <div class="space-y-4">
@@ -45,9 +45,9 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
                 </div>
             </div>
         </div>
-        <div style="background-color: var(--card-bg-color);" class="rounded-lg col-span-2 h-fit">
+        <div data-cmw-style="background:global:card_bg_color" class="rounded-lg col-span-2 h-fit">
             <div class="page-title-divider text-center pt-1 w-full">
-                <h4 style="color: var(--main-color)">Top <?= VotesConfigModel::getInstance()->getConfig()->getTopShow() ?> du mois</h4>
+                <h4 data-cmw-style="color:global:main_color">Top <?= VotesConfigModel::getInstance()->getConfig()->getTopShow() ?> du mois</h4>
             </div>
             <div class="p-4">
                 <table class="w-full text-sm text-left">
@@ -103,9 +103,9 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
         </div>
     </div>
     <?php if(ThemeModel::getInstance()->fetchConfigValue('votes_display_global')): ?>
-    <div style="background-color: var(--card-bg-color);" class="rounded-lg col-span-2 h-fit mt-8">
+    <div data-cmw-style="background:global:card_bg_color" class="rounded-lg col-span-2 h-fit mt-8">
         <div class="page-title-divider text-center pt-1 w-full">
-            <h4 style="color: var(--main-color)">Top <?= VotesConfigModel::getInstance()->getConfig()->getTopShow() ?> global</h4>
+            <h4 data-cmw-style="color:global:main_color">Top <?= VotesConfigModel::getInstance()->getConfig()->getTopShow() ?> global</h4>
         </div>
         <div class="p-4">
             <table class="w-full text-sm text-left">
