@@ -18,8 +18,7 @@ Website::setDescription("Consulter les catégorie du Forum");
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li class="">
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="a-forum">
-                            <?= ThemeModel::getInstance()->fetchConfigValue('forum_breadcrumb_home') ?>
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="a-forum" data-cmw="forum:forum_breadcrumb_home">
                         </a>
                     </li>
                     <li>
@@ -47,7 +46,7 @@ Website::setDescription("Consulter les catégorie du Forum");
         </div>
     </section>
 
-    <section class="<?php if (ThemeModel::getInstance()->fetchConfigValue('forum_use_widgets')): ?>lg:grid <?php endif; ?> grid-cols-4 gap-6 my-8">
+    <section class="<?php if (ThemeModel::getInstance()->fetchConfigValue('forum','forum_use_widgets')): ?>lg:grid <?php endif; ?> grid-cols-4 gap-6 my-8">
         <div class="col-span-3 space-y-6">
             <?php if ($category->isUserAllowed()): ?>
             <div data-cmw-style="background:global:card_bg_color" class="p-4 rounded-lg h-fit">
@@ -91,7 +90,7 @@ Website::setDescription("Consulter les catégorie du Forum");
                                 <a href="<?= $forumObj->getParent()->getLink() ?>/f/<?= $forumObj->getLastResponse()->getResponseTopic()->getForum()->getSlug() ?>/t/<?= $forumObj->getLastResponse()->getResponseTopic()->getSlug() ?>/p<?= $forumObj->getLastResponse()->getPageNumber() ?>/#<?= $forumObj->getLastResponse()?->getId() ?>">
                                     <?php endif; ?>
                                     <div class="ml-2">
-                                        <div class=""><?= $forumObj->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::getInstance()->fetchConfigValue('forum_nobody_send_message_text') ?></div>
+                                        <div class=""><?= $forumObj->getLastResponse()?->getUser()->getPseudo() ?? ThemeModel::getInstance()->fetchConfigValue('forum','forum_nobody_send_message_text') ?></div>
                                         <div><?= $forumObj->getLastResponse()?->getCreated() ?? "" ?></div>
                                     </div>
                                 </a>
@@ -106,47 +105,44 @@ Website::setDescription("Consulter les catégorie du Forum");
         </div>
 
         <!--WIDGET-->
-        <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_use_widgets')): ?>
-            <section class="h-fit space-y-6">
-                <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_stats')): ?>
-                    <div data-cmw-style="background:global:card_bg_color" class="w-full rounded-lg p-4">
-                        <div class="flex">
-                            <h4 data-cmw-style="color:global:main_color">Stats forum</h4>
-                        </div>
-                        <div class="">
-                            <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_member')): ?>
-                                <p><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_text_member') ?>
-                                <b><?= UsersModel::getInstance()->countUsers() ?></b></p><?php endif; ?>
-                            <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_messages')): ?>
-                                <p><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_text_messages') ?>
-                                <b><?= $forumModel->countAllMessagesInAllForum() ?></b></p><?php endif; ?>
-                            <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_topics')): ?>
-                                <p><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_text_topics') ?>
-                                <b><?= $forumModel->countAllTopicsInAllForum() ?></b></p><?php endif; ?>
-                        </div>
+        <section data-cmw-visible="forum:forum_use_widgets" class="h-fit space-y-6">
+            <div data-cmw-visible="forum:forum_widgets_show_stats" data-cmw-style="background:global:card_bg_color" class="w-full rounded-lg p-4">
+                <div class="flex">
+                    <h4 data-cmw="forum:forum_widgets_title_stats" data-cmw-style="color:global:main_color">Stats forum</h4>
+                </div>
+                <div class="">
+                    <div data-cmw-visible="forum:forum_widgets_show_member">
+                        <span data-cmw="forum:forum_widgets_text_member"></span>
+                        <b><?= UsersModel::getInstance()->countUsers() ?></b>
                     </div>
-                <?php endif; ?>
 
-                <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_discord')): ?>
-                    <div class="w-full">
-                        <div class="">
-                            <iframe style="width: 100%"
-                                    src="https://discord.com/widget?id=<?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_content_id') ?>&theme=dark"
-                                    height="400" allowtransparency="true"
-                                    sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
-                        </div>
+
+                    <div data-cmw-visible="forum:forum_widgets_show_messages">
+                        <span data-cmw="forum:forum_widgets_text_messages"></span>
+                        <b><?= $forumModel->countAllMessagesInAllForum() ?></b>
                     </div>
-                <?php endif; ?>
-                <?php if (ThemeModel::getInstance()->fetchConfigValue('forum_widgets_show_custom')): ?>
-                    <div data-cmw-style="background:global:card_bg_color" class="w-full rounded-lg p-4">
-                        <div class="flex">
-                            <h4 data-cmw-style="color:global:main_color"><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_custom_title') ?></h4>
-                        </div>
-                        <div class=""><?= ThemeModel::getInstance()->fetchConfigValue('forum_widgets_custom_text') ?></div>
+
+                    <div data-cmw-visible="forum:forum_widgets_show_topics">
+                        <span data-cmw="forum:forum_widgets_text_topics"></span>
+                        <b><?= $forumModel->countAllTopicsInAllForum() ?></b>
                     </div>
-                <?php endif; ?>
-            </section>
-        <?php endif; ?>
+                </div>
+            </div>
+            <div data-cmw-visible="forum:forum_widgets_show_discord" class="w-full">
+                <div class="">
+                    <iframe style="width: 100%"
+                            src="https://discord.com/widget?id=<?= ThemeModel::getInstance()->fetchConfigValue('forum','forum_widgets_content_id') ?>&theme=dark"
+                            height="400" allowtransparency="true"
+                            sandbox="allow-popups allow-popups-to-escape-sandbox allow-same-origin allow-scripts"></iframe>
+                </div>
+            </div>
+            <div data-cmw-visible="forum:forum_widgets_show_custom" data-cmw-style="background:global:card_bg_color" class="w-full rounded-lg p-4">
+                <div class="flex">
+                    <h4 data-cmw-style="color:global:main_color" data-cmw="forum:forum_widgets_custom_title"></h4>
+                </div>
+                <div class="" data-cmw="forum:forum_widgets_custom_text"></div>
+            </div>
+        </section>
 
     </section>
 

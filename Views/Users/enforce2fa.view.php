@@ -27,7 +27,7 @@ Website::setDescription("Merci d'activer le 2fa !");
                     <label for="code" class="block mb-2 text-sm font-medium">Code d'authentification</label>
                     <input type="text" name="secret" id="secret" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full p-2.5" required>
                 </div>
-                <button type="submit" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Activer</button>
+                <button type="submit" data-cmw-style="background:global:main_color" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Activer</button>
             </form>
         </div>
     </div>

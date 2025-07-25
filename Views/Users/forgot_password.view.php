@@ -24,7 +24,7 @@ Website::setDescription("C'est pas très bien d'oublié son mot de passe ...");
                 <div class="flex justify-center">
                     <?php SecurityController::getPublicData(); ?>
                 </div>
-                <button type="submit" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Réinitialiser mon mot de passe</button>
+                <button type="submit" data-cmw-style="background:global:main_color" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Réinitialiser mon mot de passe</button>
             </form>
         </div>
     </div>

@@ -35,8 +35,7 @@ $i = 0;
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li class="">
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="a-forum">
-                            <?= ThemeModel::getInstance()->fetchConfigValue('forum_breadcrumb_home') ?>
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" data-cmw="forum:forum_breadcrumb_home" class="a-forum">
                         </a>
                     </li>
                     <li>
@@ -146,7 +145,7 @@ $i = 0;
                 <?php else: ?>
                     <p><small>Tags :</small>
                         <?php foreach ($topic->getTags() as $tag): ?>
-                            <small><span class="px-1 bg-gray-200 rounded mr-1"><?= $tag->getContent() ?></span></small>
+                            <small><span data-cmw-style="background:global:main_color" class="px-1 bg-gray-200 rounded mr-1"><?= $tag->getContent() ?></span></small>
                         <?php endforeach; ?>
                     </p>
                 <?php endif; ?>
@@ -220,7 +219,7 @@ $i = 0;
                                 <!-- Modal footer -->
                                 <div class="flex justify-center p-6 space-x-2 border-t border-gray-200 rounded-b">
                                     <button type="submit"
-                                            class="head-button font-medium rounded-md text-sm px-2 py-2.5">
+                                            data-cmw-style="background:global:main_color" class="head-button font-medium rounded-md text-sm px-2 py-2.5">
                                         Signalé
                                     </button>
                                 </div>
@@ -440,7 +439,7 @@ $i = 0;
                                     <!-- Modal footer -->
                                     <div class="flex justify-center p-6 space-x-2 border-t border-gray-200 rounded-b">
                                         <button type="submit"
-                                                class="head-button font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
+                                                data-cmw-style="background:global:main_color" class="head-button font-medium rounded-md text-sm px-2 py-2.5 mr-2 mb-2">
                                             Signalé
                                         </button>
                                     </div>
@@ -691,7 +690,7 @@ $i = 0;
                                     <textarea minlength="20" class="w-full tinymce" name="topicResponse"></textarea>
                                     <div class="flex justify-center mt-2">
                                         <button type="submit"
-                                                class="head-button font-medium rounded-lg text-sm px-5 py-2.5">
+                                                data-cmw-style="background:global:main_color" class="head-button font-medium rounded-lg text-sm px-5 py-2.5">
                                             <i class="fa-solid fa-reply"></i> Poster ma réponse
                                         </button>
                                     </div>

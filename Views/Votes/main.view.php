@@ -17,7 +17,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
     <div class="lg:grid grid-cols-3 gap-6">
         <div data-cmw-style="background:global:card_bg_color" class="rounded-lg h-fit">
             <div class="page-title-divider text-center pt-1 w-full">
-                <h4 data-cmw-style="color:global:main_color"><?= ThemeModel::getInstance()->fetchConfigValue('votes_participate_title') ?></h4>
+                <h4 data-cmw-style="color:global:main_color" data-cmw="votes:votes_participate_title"></h4>
             </div>
             <div class="p-4">
                 <div class="space-y-4">
@@ -25,7 +25,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
                         <div style="background-color: var(--card-in-card-bg-color);" class="rounded-lg p-2 mb-4">
                             <div class="text-center">Pour pouvoir voter et récupérer vos récompenses, vous devez être connecté sur le site, alors n'attendez plus pour obtenir des récompenses uniques !</div>
                             <div class="pt-4 pb-2 text-center">
-                                <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="head-button font-medium rounded-lg px-4 py-2">Connexion</i></a>
+                                <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" data-cmw-style="background:global:main_color" class="head-button font-medium rounded-lg px-4 py-2">Connexion</i></a>
                             </div>
                         </div>
                     <?php else: ?>
@@ -37,7 +37,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
                                 </div>
                                 <p>Récompense : <b><?= $site->getRewards()?->getTitle() ?></b></p>
                                 <div class="flex justify-center mt-2">
-                                    <button id="<?= $site->getSiteId() ?>" onclick="sendVote('<?= $site->getSiteId() ?>')" class="head-button text-center font-medium rounded px-2 py-1">Voter <i class="fa-solid fa-award"></i></button>
+                                    <button id="<?= $site->getSiteId() ?>" onclick="sendVote('<?= $site->getSiteId() ?>')" data-cmw-style="background:global:main_color" class="head-button text-center font-medium rounded px-2 py-1">Voter <i class="fa-solid fa-award"></i></button>
                                 </div>
                             </div>
                         <?php endforeach; ?>
@@ -102,8 +102,7 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             </div>
         </div>
     </div>
-    <?php if(ThemeModel::getInstance()->fetchConfigValue('votes_display_global')): ?>
-    <div data-cmw-style="background:global:card_bg_color" class="rounded-lg col-span-2 h-fit mt-8">
+    <div data-cmw-visible="votes:votes_display_global" data-cmw-style="background:global:card_bg_color" class="rounded-lg col-span-2 h-fit mt-8">
         <div class="page-title-divider text-center pt-1 w-full">
             <h4 data-cmw-style="color:global:main_color">Top <?= VotesConfigModel::getInstance()->getConfig()->getTopShow() ?> global</h4>
         </div>
@@ -160,5 +159,4 @@ Website::setDescription("Votez, obtenez des points de vote et plein d'autres cad
             </table>
         </div>
     </div>
-    <?php endif; ?>
 </section>

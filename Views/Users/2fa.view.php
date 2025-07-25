@@ -19,7 +19,7 @@ Website::setDescription("Activer le double facteur");
                     <label for="code" class="block mb-2 text-sm font-medium">Code d'authentification</label>
                     <input id="code" name="code" type="text" class="input-focus border border-gray-300 text-sm rounded-lg block w-full p-2.5" placeholder="123456" required>
                 </div>
-                <button type="submit" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Connexion</button>
+                <button type="submit" data-cmw-style="background:global:main_color" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Connexion</button>
             </form>
         </div>
     </div>

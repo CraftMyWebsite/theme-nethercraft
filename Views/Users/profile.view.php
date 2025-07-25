@@ -42,7 +42,7 @@ Website::setDescription("Éditez votre profil");
                             </div>
                         </div>
                         <div class="pt-4">
-                            <button type="submit" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Appliquer les modifications</button>
+                            <button type="submit" data-cmw-style="background:global:main_color" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Appliquer les modifications</button>
                         </div>
                     </form>
                 </div>
@@ -53,7 +53,7 @@ Website::setDescription("Éditez votre profil");
                 </div>
                 <div class="p-4 flex flex-wrap justify-center">
                     <img class="my-2" width="18.5%" alt="player head" src="https://apiv2.craftmywebsite.fr/skins/3d/user=<?= $user->getPseudo() ?>&vr=-10&hr=20&vrll=25&vrrl=-25&vrla=-25&vrra=25&hrh=-20">
-                    <a href="https://www.minecraft.net/fr-fr/msaprofile/mygames/editskin" target="_blank" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Changer de skin</a>
+                    <a href="https://www.minecraft.net/fr-fr/msaprofile/mygames/editskin" target="_blank" data-cmw-style="background:global:main_color" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Changer de skin</a>
                 </div>
             </div>
             <div style="background-color: var(--card-in-card-bg-color);" class="shadow-xl h-fit mt-4 lg:mt-0">
@@ -80,7 +80,7 @@ Website::setDescription("Éditez votre profil");
                                     <input type="text" name="secret" id="secret" class="input-focus bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5" required>
                                 </div>
                                 <div class="text-center mt-2">
-                                    <button type="submit" class="head-button w-full rounded text-sm px-5 py-2.5 text-center"><?= $user->get2Fa()->isEnabled() ? 'Désactiver' : 'Activer' ?></button>
+                                    <button type="submit" data-cmw-style="background:global:main_color" class="head-button w-full rounded text-sm px-5 py-2.5 text-center"><?= $user->get2Fa()->isEnabled() ? 'Désactiver' : 'Activer' ?></button>
                                 </div>
                             </form>
                         </div>

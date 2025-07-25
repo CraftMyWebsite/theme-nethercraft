@@ -19,8 +19,7 @@ Website::setDescription("Éditez un topic");
             <nav class="flex" aria-label="Breadcrumb">
                 <ol class="inline-flex items-center space-x-2">
                     <li class="">
-                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="a-forum">
-                            <?= ThemeModel::getInstance()->fetchConfigValue('forum_breadcrumb_home') ?>
+                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>forum" class="a-forum" data-cmw="forum:forum_breadcrumb_home">
                         </a>
                     </li>
                     <li>
@@ -69,7 +68,7 @@ Website::setDescription("Éditez un topic");
                 <label class="block mb-2 text-sm font-medium ">Contenue<span class="text-red-500">*</span> :</label>
                 <textarea minlength="20" name="content"  class="input-focus w-full tinymce"><?= $topic->getContent() ?></textarea>
                 <div class="text-center mt-4">
-                    <button type="submit" class="head-button font-medium rounded px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2"><i class="fa-solid fa-pen-to-square"></i> Éditer</button>
+                    <button type="submit" data-cmw-style="background:global:main_color" class="head-button font-medium rounded px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2"><i class="fa-solid fa-pen-to-square"></i> Éditer</button>
                 </div>
             </form>
         </div>

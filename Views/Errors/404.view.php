@@ -1,7 +1,6 @@
 <?php
 
 use CMW\Manager\Env\EnvManager;
-use CMW\Model\Core\ThemeModel;
 use CMW\Utils\Website;
 
 Website::setTitle("Page introuvable");

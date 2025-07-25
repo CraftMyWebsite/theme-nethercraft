@@ -15,7 +15,7 @@ Website::setTitle("Inscription");
 Website::setDescription("Inscrivez-vous");
 ?>
 
-<?php if(ThemeModel::getInstance()->fetchConfigValue('header_allow_register_button')): ?>
+<?php if(ThemeModel::getInstance()->fetchConfigValue('header','header_allow_register_button')): ?>
 <div class="mx-auto relative p-4 w-full max-w-xl h-full md:h-auto mb-6">
     <div class="">
         <div class="py-6 px-6 lg:px-8">
@@ -52,7 +52,7 @@ Website::setDescription("Inscrivez-vous");
                 <div class="flex justify-center">
                     <?php SecurityController::getPublicData(); ?>
                 </div>
-                <button type="submit" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">M'inscrire</button>
+                <button type="submit" data-cmw-style="background:global:main_color" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">M'inscrire</button>
             </form>
             <div class="flex flex-no-wrap justify-center items-center py-4">
                 <div class="px-10 w-auto">
@@ -77,7 +77,7 @@ Website::setDescription("Inscrivez-vous");
 <div class="mx-auto relative p-4 w-full max-w-xl h-full md:h-auto mb-6 mt-6">
     <div class="relative bg-white rounded-lg shadow">
         <div class="py-6 px-6 lg:px-8">
-            <?= ThemeModel::getInstance()->fetchConfigValue('global_no_register_message') ?>
+            <?= ThemeModel::getInstance()->fetchConfigValue('header','global_no_register_message') ?>
         </div>
     </div>
 </div>

@@ -13,7 +13,7 @@ Website::setDescription("Consultez les réponses de nos experts.");
 
 <section class="py-8 px-8 md:px-28 2xl:px-72">
     <div class="mb-4 text-center">
-        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>support" class="head-button font-medium text-sm rounded px-2 py-1">Retourner au support</a>
+        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>support" data-cmw-style="background:global:main_color" class="head-button font-medium text-sm rounded px-2 py-1">Retourner au support</a>
     </div>
     <div data-cmw-style="background:global:card_bg_color" class="rounded-lg col-span-2 h-fit p-4">
         <div class="page-title-divider text-center pt-1 w-full">

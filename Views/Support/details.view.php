@@ -16,9 +16,9 @@ Website::setDescription("Consultez les réponses de nos experts.");
 <section class="mb-16 px-8 md:px-28 2xl:px-72">
     <div class="mb-4 text-center">
         <div class="flex justify-between">
-            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>support" class="head-button font-medium text-sm rounded px-2 py-1">< Retourner au support</a>
+            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>support" data-cmw-style="background:global:main_color" class="head-button font-medium text-sm rounded px-2 py-1">< Retourner au support</a>
             <?php if ($support->getStatus() !== "2"): ?>
-                <a href="<?= $support->getCloseUrl() ?>" class="head-button font-medium text-sm rounded px-2 py-1">Cloturer</a>
+                <a href="<?= $support->getCloseUrl() ?>" data-cmw-style="background:global:main_color" class="head-button font-medium text-sm rounded px-2 py-1">Cloturer</a>
             <?php endif; ?>
         </div>
     </div>
@@ -72,7 +72,7 @@ Website::setDescription("Consultez les réponses de nos experts.");
                                   placeholder="Vous pouvez ..."></textarea>
                     </div>
                     <div class="text-center">
-                        <button type="submit" class="head-button font-medium rounded px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Répondre <i class="fa-solid fa-comment"></i></button>
+                        <button type="submit" data-cmw-style="background:global:main_color" class="head-button font-medium rounded px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Répondre <i class="fa-solid fa-comment"></i></button>
                     </div>
                 </form>
                 <?php endif; ?>

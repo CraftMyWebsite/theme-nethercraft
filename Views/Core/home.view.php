@@ -67,7 +67,7 @@ Website::setDescription(Website::getWebsiteDescription());
                                         <p class="text-xs"><?= $firstNews->getDateCreated() ?></p>
                                     </div>
                                     <div>
-                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $firstNews->getSlug() ?>" class="head-button px-2 py-1 rounded-lg">Lire l'article</a>
+                                        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $firstNews->getSlug() ?>" data-cmw-style="background:global:main_color" class="head-button px-2 py-1 rounded-lg">Lire l'article</a>
                                     </div>
                                 </div>
                             </div>
@@ -94,7 +94,7 @@ Website::setDescription(Website::getWebsiteDescription());
                                     <p class="text-xs"><?= $secondNews->getDateCreated() ?></p>
                                 </div>
                                 <div>
-                                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $secondNews->getSlug() ?>" class="head-button px-2 py-1 rounded-lg">Lire l'article</a>
+                                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $secondNews->getSlug() ?>" data-cmw-style="background:global:main_color" class="head-button px-2 py-1 rounded-lg">Lire l'article</a>
                                 </div>
                             </div>
 
@@ -120,7 +120,7 @@ Website::setDescription(Website::getWebsiteDescription());
                                     <p class="text-xs"><?= $thirdNews->getDateCreated() ?></p>
                                 </div>
                                 <div>
-                                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $thirdNews->getSlug() ?>" class="head-button px-2 py-1 rounded-lg">Lire l'article</a>
+                                    <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $thirdNews->getSlug() ?>" data-cmw-style="background:global:main_color" class="head-button px-2 py-1 rounded-lg">Lire l'article</a>
                                 </div>
                             </div>
 
@@ -268,7 +268,7 @@ Website::setDescription(Website::getWebsiteDescription());
                         <?php SecurityController::getPublicData(); ?>
                     </div>
                     <div class="text-center mt-4">
-                        <button type="submit" style="background-color: var(--bg-pixcraft); color: var(--nav-color-pixcraft-hover)" class="head-button px-2 py-1 rounded-lg" data-cmw="home-newsletter:newsletter_section_button"></button>
+                        <button type="submit" data-cmw-style="background:global:main_color" class="head-button px-2 py-1 rounded-lg" data-cmw="home-newsletter:newsletter_section_button"></button>
                     </div>
                 </form>
             </div>

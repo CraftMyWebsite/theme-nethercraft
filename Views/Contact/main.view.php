@@ -35,7 +35,7 @@ Website::setDescription("Contactez-nous dès maintenant");
                 <?php SecurityController::getPublicData(); ?>
             </div>
             <div class="text-center mt-4">
-                <button type="submit" class="head-button font-medium rounded px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Soumettre <i class="fa-solid fa-paper-plane"></i></button>
+                <button type="submit" data-cmw-style="background:global:main_color" class="head-button font-medium rounded px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Soumettre <i class="fa-solid fa-paper-plane"></i></button>
             </div>
         </form>
     </div>

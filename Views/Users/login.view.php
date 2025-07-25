@@ -41,7 +41,7 @@ Website::setDescription("Connectez-vous sur " . Website::getWebsiteName());
                 <div class="flex justify-center mt-2">
                     <?php SecurityController::getPublicData(); ?>
                 </div>
-                <button type="submit" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Connexion</button>
+                <button type="submit" data-cmw-style="background:global:main_color" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Connexion</button>
             </form>
             <div class="flex flex-no-wrap justify-center items-center py-4">
                 <div class="px-10 w-auto">

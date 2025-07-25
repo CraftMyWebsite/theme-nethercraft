@@ -17,7 +17,7 @@ Website::setDescription("Consultez les réponses de nos experts.");
 
 <section class="mb-16 px-8 md:px-28 2xl:px-72">
     <div class="mb-4 text-center">
-        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>support/private" class="head-button font-medium text-sm rounded px-2 py-1">Voir mes demandes</a>
+        <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>support/private" data-cmw-style="background:global:main_color" class="head-button font-medium text-sm rounded px-2 py-1">Voir mes demandes</a>
     </div>
     <div class="<?php if ($config->getDefaultVisibility() && $config->visibilityIsDefinedByCustomer() || !$config->visibilityIsDefinedByCustomer()): ?>lg:grid grid-cols-3<?php endif; ?> gap-6">
         <div data-cmw-style="background:global:card_bg_color" class="rounded-lg h-fit p-4">
@@ -44,7 +44,7 @@ Website::setDescription("Consultez les réponses de nos experts.");
                         </div>
                         <?php endif; ?>
                         <div>
-                            <button type="submit" class="head-button font-medium rounded px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Soumettre <i class="fa-solid fa-paper-plane"></i></button>
+                            <button type="submit" data-cmw-style="background:global:main_color" class="head-button font-medium rounded px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2">Soumettre <i class="fa-solid fa-paper-plane"></i></button>
                         </div>
                     </div>
                 </form>

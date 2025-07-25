@@ -2,13 +2,13 @@
 
 use CMW\Manager\Env\EnvManager;
 use CMW\Model\Core\ThemeModel;
-$newsList = \CMW\Model\News\NewsModel::getInstance()->getSomeNews(ThemeModel::getInstance()->fetchConfigValue('news_page_number_display'), 'DESC');
+$newsList = \CMW\Model\News\NewsModel::getInstance()->getSomeNews(ThemeModel::getInstance()->fetchConfigValue('news','news_page_number_display'), 'DESC');
 use CMW\Controller\Users\UsersController;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-Website::setTitle(ThemeModel::getInstance()->fetchConfigValue('news_title'));
-Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_description'));
+Website::setTitle(ThemeModel::getInstance()->fetchConfigValue('news','news_page_title'));
+Website::setDescription('');
 ?>
 <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
     <div class="lg:grid grid-cols-2 gap-6">
@@ -30,7 +30,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
                             <p class="text-xs"><?= $news->getDateCreated() ?></p>
                         </div>
                         <div>
-                            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" class="head-button px-2 py-1 rounded-lg">Lire l'article</a>
+                            <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>news/<?= $news->getSlug() ?>" data-cmw-style="background:global:main_color"  class="head-button px-2 py-1 rounded-lg">Lire l'article</a>
                         </div>
                     </div>
 

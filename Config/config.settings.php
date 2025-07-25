@@ -1135,30 +1135,6 @@ return [
                 type: EditorType::TEXT,
             ),
             new EditorValue(
-                title: 'Titre page message',
-                themeKey: 'forum_message',
-                defaultValue: 'Messages',
-                type: EditorType::TEXT,
-            ),
-            new EditorValue(
-                title: 'Dernier messages',
-                themeKey: 'forum_last_message',
-                defaultValue: 'Dernier messages',
-                type: EditorType::TEXT,
-            ),
-            new EditorValue(
-                title: 'Affichages',
-                themeKey: 'forum_display',
-                defaultValue: 'Affichages',
-                type: EditorType::TEXT,
-            ),
-            new EditorValue(
-                title: 'Réponses',
-                themeKey: 'forum_response',
-                defaultValue: 'Réponses',
-                type: EditorType::TEXT,
-            ),
-            new EditorValue(
                 title: 'Forum vide : Message',
                 themeKey: 'forum_nobody_send_message_text',
                 defaultValue: 'Aucun message',

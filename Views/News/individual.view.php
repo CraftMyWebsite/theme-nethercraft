@@ -1,7 +1,6 @@
 <?php
 
 use CMW\Manager\Env\EnvManager;
-use CMW\Utils\Utils;
 /* @var \CMW\Entity\News\NewsEntity $news */
 use CMW\Model\Core\ThemeModel;
 use CMW\Manager\Security\SecurityManager;
@@ -9,8 +8,8 @@ use CMW\Controller\Users\UsersController;
 use CMW\Utils\Website;
 
 /*TITRE ET DESCRIPTION*/
-Website::setTitle(ThemeModel::getInstance()->fetchConfigValue('news_title') . ' - '. $news->getTitle());
-Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_description'));
+Website::setTitle(ThemeModel::getInstance()->fetchConfigValue('news','news_page_title') . ' - '. $news->getTitle());
+Website::setDescription($news->getDescription());
 ?>
 
     <section class="mb-16 px-4 md:px-36 2xl:px-72 space-y-8">
@@ -116,7 +115,7 @@ Website::setDescription(ThemeModel::getInstance()->fetchConfigValue('news_descri
                         </div>
                         <div class="text-center mt-4">
     <?php if(UsersController::isUserLogged()): ?>
-                            <button type="submit"  class="head-button font-medium rounded px-4 py-2 ">Commenter <i class="fa-solid fa-comments"></i></button>
+                            <button type="submit" data-cmw-style="background:global:main_color" class="head-button font-medium rounded px-4 py-2 ">Commenter <i class="fa-solid fa-comments"></i></button>
     <?php else: ?>
                             <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="head-button font-medium rounded px-4 py-2">Connexion <i class="fa-solid fa-user"></i></a>
     <?php endif; ?>

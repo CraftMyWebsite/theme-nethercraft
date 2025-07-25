@@ -32,8 +32,8 @@ use CMW\Utils\Website;
                 <a data-cmw-visible="footer:footer_active_facebook" data-cmw-attr="href:footer:footer_link_facebook" <?php if(ThemeModel::getInstance()->fetchConfigValue('footer','footer_open_link_new_tab')): ?>target="_blank"<?php endif; ?> class="head-a">
                     <i data-cmw-class="footer:footer_icon_facebook" class="fa-xl"></i>
                 </a>
-                <a data-cmw-visible="footer:footer_active_twitter" data-cmw-attr="href:footer:footer_link_twitter" <?php if(ThemeModel::getInstance()->fetchConfigValue('footer','footer_open_link_new_tab')): ?>target="_blank"<?php endif; ?> class="head-a">
-                    <i data-cmw-class="footer:footer_icon_twitter" class="fa-xl"></i>
+                <a data-cmw-visible="footer:footer_active_x" data-cmw-attr="href:footer:footer_link_x" <?php if(ThemeModel::getInstance()->fetchConfigValue('footer','footer_open_link_new_tab')): ?>target="_blank"<?php endif; ?> class="head-a">
+                    <i data-cmw-class="footer:footer_icon_x" class="fa-xl"></i>
                 </a>
                 <a data-cmw-visible="footer:footer_active_instagram" data-cmw-attr="href:footer:footer_link_instagram" <?php if(ThemeModel::getInstance()->fetchConfigValue('footer', 'footer_open_link_new_tab')): ?>target="_blank"<?php endif; ?> class="head-a">
                     <i data-cmw-class="footer:footer_icon_instagram" class="fa-xl"></i>
