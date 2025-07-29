@@ -121,6 +121,15 @@ $menus = MenusModel::getInstance();
                             <a data-cmw-style="background:global:main_color" data-cmw-visible="header:header_allow_login_button" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>login" class="head-button rounded-lg py-2 px-4 text-lg space-x-3"><i class="fa-solid fa-user"></i><span>Connexion</span></a>
                             <a data-cmw-style="background:global:main_color" data-cmw-visible="header:header_allow_register_button" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>register" class="head-button rounded-lg py-2 px-4 text-lg space-x-3"><i class="fa-solid fa-plus"></i><span>S'inscrire</span></a>
                         </div>
+                        <?php if (PackageController::isInstalled('Shop')): ?>
+                            <div>
+                                <a href="<?= Website::getProtocol() ?>://<?= $_SERVER['SERVER_NAME'] ?><?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>shop/cart" style="display: inline-flex; position: relative; align-items: center; padding: .75rem;font-size: 0.875rem;line-height: 1.25rem">
+                                    <i class="text-lg fa-solid fa-cart-shopping"></i>
+                                    <span class="sr-only">Articles</span>
+                                    <div style="display: inline-flex; position: absolute; top: -0.2rem; right: -0.2rem; justify-content: center; align-items: center;width: 1.2rem; height: 1.2rem; font-size: 0.75rem;line-height: 1rem;font-weight: 700; color: white; background: red; border-radius: 100%"><?= $itemInCart ?></div>
+                                </a>
+                            </div>
+                        <?php endif; ?>
                     <?php else: ?>
                     <div class="inline-flex">
                         <button id="dropdownDelayButton" data-dropdown-offset-distance=0 data-dropdown-toggle="dropdownPlayer" data-dropdown-delay="10" data-dropdown-trigger="hover" data-cmw-style="background:global:main_color" class="head-button rounded-lg py-2 px-4">
