@@ -2,6 +2,8 @@
 
 use CMW\Controller\Core\PackageController;
 use CMW\Controller\Minecraft\MinecraftController;
+use CMW\Controller\Shop\Admin\Item\ShopItemsController;
+use CMW\Controller\Shop\Admin\Payment\ShopPaymentsController;
 use CMW\Controller\Users\UsersSessionsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Controller\Users\UsersController;
@@ -155,6 +157,11 @@ $menus = MenusModel::getInstance();
                                 <?php if (PackageController::isInstalled("Shop")): ?>
                                     <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>shop/settings" id="dropdownPlayer" data-dropdown-offset-distance=0 data-dropdown-toggle="dropdownPlayer" class="block cursor-pointer nav-a p-2"><i class="fa-solid fa-gears"></i> Paramètres</a>
                                     <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>shop/history" id="dropdownPlayer" data-dropdown-offset-distance=0 data-dropdown-toggle="dropdownPlayer" class="block cursor-pointer nav-a p-2"><i class="fa-solid fa-clipboard-list"></i> Commandes</a>
+                                <?php endif; ?>
+                                <?php if (PackageController::isInstalled('ShopExtendedToken')): ?>
+                                        <a href="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>shop/tokens"
+                                           class="block cursor-pointer nav-a p-2"><?= ShopPaymentsController::getInstance()->getPaymentByVarName('extendedToken')->faIcon() ?>
+                                            <?= ShopItemsController::getInstance()->getPriceTypeMethodsByVarName('extendedToken')->name() ?></a>
                                 <?php endif; ?>
                                 <a href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>logout" id="dropdownPlayer" data-dropdown-offset-distance=0 data-dropdown-toggle="dropdownPlayer" class="block cursor-pointer nav-a p-2 border-t"><i class="fa-solid fa-lock text-red-400"></i> Déconnexion</a>
                             </div>
