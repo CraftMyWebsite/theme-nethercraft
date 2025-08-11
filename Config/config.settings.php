@@ -5,6 +5,7 @@ use CMW\Manager\Theme\Editor\Entities\EditorRangeOptions;
 use CMW\Manager\Theme\Editor\Entities\EditorSelectOptions;
 use CMW\Manager\Theme\Editor\Entities\EditorType;
 use CMW\Manager\Theme\Editor\Entities\EditorValue;
+use CMW\Utils\Website;
 
 $shop_link = EnvManager::getInstance()->getValue("PATH_SUBFOLDER")."shop";
 $newsOptions = [];
@@ -148,6 +149,24 @@ return [
                 title: 'Message d\'enregistrement interdit',
                 themeKey: 'global_no_register_message',
                 defaultValue: 'Nous somme désolé mais les inscriptions sont pour le moment désactiver.',
+                type: EditorType::TEXT
+            ),
+            new EditorValue(
+                title: 'Icon à gauche (non MC)',
+                themeKey: 'left_icon',
+                defaultValue: 'fa-solid fa-circle-play',
+                type: EditorType::FONTAWESOMEPICKER
+            ),
+            new EditorValue(
+                title: 'Titre à gauche (non MC)',
+                themeKey: 'left_title',
+                defaultValue: 'Bienvenue',
+                type: EditorType::TEXT
+            ),
+            new EditorValue(
+                title: 'Texte à gauche (non MC)',
+                themeKey: 'left_text',
+                defaultValue: 'sur ' . Website::getWebsiteName(),
                 type: EditorType::TEXT
             ),
         ]

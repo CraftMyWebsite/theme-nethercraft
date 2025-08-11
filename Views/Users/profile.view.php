@@ -2,6 +2,9 @@
 
 /* @var \CMW\Entity\Users\UserEntity $user */
 
+use CMW\Controller\Core\PackageController;
+use CMW\Controller\Users\UsersController;
+use CMW\Controller\Users\UsersSessionsController;
 use CMW\Manager\Env\EnvManager;
 use CMW\Manager\Security\SecurityManager;
 use CMW\Model\Core\ThemeModel;
@@ -51,10 +54,29 @@ Website::setDescription("Éditez votre profil");
                 <div class="page-title-divider text-center pt-1 w-full">
                     <h2 class="title-color font-semibold text-xl uppercase"><?= $user->getPseudo() ?></h2>
                 </div>
+                <?php if (PackageController::isInstalled("Minecraft")) : ?>
                 <div class="p-4 flex flex-wrap justify-center">
                     <img class="my-2" width="18.5%" alt="player head" src="https://apiv2.craftmywebsite.fr/skins/3d/user=<?= $user->getPseudo() ?>&vr=-10&hr=20&vrll=25&vrrl=-25&vrla=-25&vrra=25&hrh=-20">
                     <a href="https://www.minecraft.net/fr-fr/msaprofile/mygames/editskin" target="_blank" data-cmw-style="background:global:main_color" class="head-button w-full rounded text-sm px-5 py-2.5 text-center">Changer de skin</a>
                 </div>
+                <?php else: ?>
+                    <div class="p-4 flex flex-wrap justify-center">
+                        <div class="mb-4">
+                            <img class="mr-2" loading="lazy" alt="player head" width="200px" src="<?= UsersSessionsController::getInstance()->getCurrentUser()?->getUserPicture()->getImage() ?>">
+                        </div>
+                        <div>
+                            <form action="<?= EnvManager::getInstance()->getValue('PATH_SUBFOLDER') ?>profile/update/picture" method="post" enctype="multipart/form-data">
+                                <?php SecurityManager::getInstance()->insertHiddenToken() ?>
+                                <label for="password" class="block mb-2 text-sm font-medium text-gray-900">Changer votre image :</label>
+                                <div class="flex">
+                                    <input class="" type="file" id="pictureProfile" name="pictureProfile" accept=".png, .jpg, .jpeg, .webp, .gif" required>
+                                    <button class="inline text-white bg-blue-700 hover:bg-blue-800 font-medium rounded-r-lg text-sm px-4 py-2 md:px-5 md:py-2.5 mr-1 md:mr-2" type="submit">Sauvegarder</button>
+                                </div>
+                                <p class="mt-1 text-sm text-gray-500 dark:text-gray-300" id="file_input_help">PNG, JPG, JPEG, WEBP, GIF (MAX. 400px400px).</p>
+                            </form>
+                        </div>
+                    </div>
+                <?php endif; ?>
             </div>
             <div style="background-color: var(--card-in-card-bg-color);" class="shadow-xl h-fit mt-4 lg:mt-0">
                 <div class="page-title-divider text-center pt-1 w-full">

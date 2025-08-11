@@ -67,6 +67,7 @@ $menus = MenusModel::getInstance();
 
     <div class="lg:grid grid-cols-5 mt-8">
         <div class="hidden lg:flex justify-end items-center col-span-2">
+            <?php if (PackageController::isInstalled("Minecraft")) : ?>
             <div class="flex justify-end items-center space-x-4 hyper-play-card">
                 <div onclick="copyURL('<?= ThemeModel::getInstance()->fetchConfigValue('header', 'join_ip') ?>')" class="text-right cursor-pointer text-hover">
                     <span data-cmw-visible="header:show_server_status">
@@ -87,6 +88,15 @@ $menus = MenusModel::getInstance();
                 </div>
                 <i data-cmw-style="color:global:main_color" class="cursor-pointer fa-circle-play fa-solid fa-circle-play text-5xl"></i>
             </div>
+            <?php else: ?>
+            <div class="flex justify-end items-center space-x-4">
+                <div class="text-right text-hover">
+                    <p data-cmw-style="color:global:main_color" class="uppercase text-xl font-bold" data-cmw="header:left_title" >Bienvenue</p>
+                    <p class="uppercase text-sm" data-cmw="header:left_text"></p>
+                </div>
+                <i data-cmw-style="color:global:main_color" data-cmw-class="header:left_icon" class="cursor-pointer text-5xl"></i>
+            </div>
+            <?php endif; ?>
         </div>
         <div>
             <div class="text-center">
@@ -112,7 +122,13 @@ $menus = MenusModel::getInstance();
             <div data-cmw-style="background:global:card_bg_color" class="py-4 px-6 col-span-3 rounded-lg">
                 <div class="flex lg:justify-between items-center">
                     <div class="flex items-center space-x-2 lg:space-x-6">
+                        <?php if (PackageController::isInstalled("Minecraft")) : ?>
                         <img class="hidden lg:inline mr-2" loading="lazy" alt="player head" width="80px" src="https://apiv2.craftmywebsite.fr/skins/3d/user=<?= UsersSessionsController::getInstance()->getCurrentUser()?->getPseudo() ?>&headOnly=true">
+                        <?php else: ?>
+                            <?php if (UsersController::isUserLogged()): ?>
+                                <img class="hidden lg:inline mr-2" loading="lazy" alt="player head" width="80px" src="<?= UsersSessionsController::getInstance()->getCurrentUser()?->getUserPicture()->getImage() ?>">
+                            <?php endif; ?>
+                        <?php endif; ?>
                         <div class="hidden lg:block">
                             <h4 data-cmw-style="color:global:main_color" data-cmw="header:header_welcome_title"></h4>
                             <p data-cmw="header:header_welcome_text"></p>
