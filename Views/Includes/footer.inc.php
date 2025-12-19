@@ -23,8 +23,7 @@ use CMW\Utils\Website;
             </div>
             <div data-cmw-visible="footer:footer_active_condition" class="text-center">
                 <p class="font-bold mb-2" data-cmw="footer:footer_title_condition"></p>
-                <p><a class="head-a" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>cgu" data-cmw="footer:footer_desc_condition_use"></a> /
-                    <a class="head-a" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>cgv" data-cmw="footer:footer_desc_condition_sale"></a></p>
+                <p><a class="head-a" href="<?= EnvManager::getInstance()->getValue("PATH_SUBFOLDER") ?>all_terms" data-cmw="footer:footer_desc_condition_use"></a></p>
             </div>
         <div class="text-center">
             <p class="font-bold mb-2">Liens utiles</p>
